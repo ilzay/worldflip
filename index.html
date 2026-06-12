@@ -153,6 +153,44 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 .nocards{text-align:center;color:var(--muted);font-size:clamp(12px,3.4vw,14px);padding:44px 16px;line-height:2}
+.badge.streak{color:var(--gold);border-color:rgba(255,209,102,.3)}
+.sets-toggle{display:flex;align-items:center;justify-content:space-between;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:clamp(11px,3vw,14px) clamp(12px,3.5vw,16px);color:var(--text);font-size:clamp(12px,3.4vw,14px);font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;width:100%;transition:border-color .15s}
+.sets-toggle:active{border-color:var(--acc)}
+.sets-toggle svg{transition:transform .25s;color:var(--muted)}
+.sets-toggle.open svg{transform:rotate(180deg)}
+.set-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:clamp(11px,3vw,14px);display:flex;align-items:center;gap:10px;margin-bottom:7px;min-width:0}
+.set-i{flex:1;min-width:0}
+.set-n{font-weight:700;font-size:clamp(12px,3.4vw,14px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.set-c{font-size:clamp(10px,2.8vw,12px);color:var(--muted);margin-top:1px}
+.set-add{background:var(--acc-dim);border:1px solid rgba(45,224,165,.35);border-radius:30px;color:var(--acc2);font-size:clamp(10px,3vw,12px);font-weight:700;font-family:'Inter',sans-serif;padding:7px 14px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s}
+.set-add:active{transform:scale(.95);background:rgba(45,224,165,.3)}
+.set-add.done{opacity:.45;pointer-events:none}
+.set-wrap{margin-bottom:7px}
+.set-wrap .set-card{margin-bottom:0;cursor:pointer}
+.set-emoji{font-size:clamp(17px,5vw,21px);flex-shrink:0}
+.set-arr{color:var(--muted2);transition:transform .25s;flex-shrink:0}
+.set-wrap.open .set-arr{transform:rotate(180deg)}
+.set-preview{background:var(--s2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);max-height:240px;overflow-y:auto;scrollbar-width:none;animation:up .2s ease}
+.set-preview::-webkit-scrollbar{display:none}
+.set-wrap.open .set-card{border-radius:var(--r) var(--r) 0 0}
+.sp-row{display:flex;align-items:center;gap:8px;padding:clamp(7px,2vw,9px) clamp(11px,3.2vw,15px);border-bottom:1px solid var(--border);min-width:0}
+.sp-row:last-child{border-bottom:none}
+.sp-row.has{opacity:.45}
+.sp-en{font-weight:600;font-size:clamp(11px,3.2vw,13px);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sp-ru{font-size:clamp(10px,3vw,12px);color:var(--muted);flex:1;text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sp-check{color:var(--acc);font-size:11px;font-weight:700;flex-shrink:0}
+.streak-pop{position:fixed;inset:0;background:rgba(6,14,10,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity .25s}
+.streak-pop.show{opacity:1;pointer-events:all}
+.streak-card{background:var(--s1);border:1px solid rgba(255,209,102,.35);border-radius:24px;padding:clamp(24px,7vw,36px) clamp(28px,8vw,44px);display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;transform:scale(.7);transition:transform .35s cubic-bezier(.34,1.56,.64,1);max-width:86vw;box-shadow:0 0 60px rgba(255,209,102,.15),0 20px 60px rgba(0,0,0,.6)}
+.streak-pop.show .streak-card{transform:scale(1)}
+.streak-fire{font-size:clamp(48px,14vw,64px);animation:fireWob 1.2s ease-in-out infinite}
+@keyframes fireWob{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.12) rotate(3deg)}}
+.streak-num{font-family:'Unbounded',sans-serif;font-size:clamp(30px,9vw,42px);font-weight:800;color:var(--gold)}
+.streak-lbl{font-size:clamp(13px,3.8vw,16px);font-weight:700;color:var(--text)}
+.streak-sub{font-size:clamp(11px,3.2vw,13px);color:var(--muted)}
+.spk{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:50%;width:clamp(34px,9vw,40px);height:clamp(34px,9vw,40px);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--acc2);transition:all .15s;flex-shrink:0}
+.spk:active{transform:scale(.9);background:var(--acc-dim)}
+.spk svg{width:55%;height:55%}
 .center{display:flex;justify-content:center}
 </style>
 </head>
@@ -165,7 +203,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
     <div class="page active" id="page-add">
       <div class="hdr">
         <div class="hdr-title">WordFlip<span class="dot">.</span></div>
-        <div class="badge" id="cnt">0 слов</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+          <div class="badge streak" id="streak-b" style="display:none">🔥 <span id="streak-n">0</span></div>
+          <div class="badge" id="cnt">0 слов</div>
+        </div>
       </div>
       <div class="card">
         <div>
@@ -185,6 +226,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
         </div>
         <button class="btn" id="btn-add" onclick="addWord()">Добавить</button>
       </div>
+      <button class="sets-toggle" onclick="toggleSets()">
+        <span>📦 Готовые наборы слов</span>
+        <svg id="sets-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div id="sets-box" style="display:none"></div>
       <div class="wlist" id="wlist"></div>
     </div>
 
@@ -225,6 +271,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
       Тест
     </button>
   </nav>
+</div>
+<div class="streak-pop" id="streak-pop" onclick="hideStreakPop()">
+  <div class="streak-card">
+    <div class="streak-fire">🔥</div>
+    <div class="streak-num" id="sp-num"></div>
+    <div class="streak-lbl" id="sp-lbl"></div>
+    <div class="streak-sub" id="sp-sub">Возвращайся завтра, чтобы продолжить серию</div>
+  </div>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -281,18 +335,196 @@ function save() {
 function loadCloud(cb) {
   if (!CS) { cb(); return; }
   try {
-    CS.getItems(['lx_words'], (err, vals) => {
-      if (!err && vals && vals.lx_words) {
-        try {
-          const cw = JSON.parse(vals.lx_words);
-          if (Array.isArray(cw) && cw.length >= words.length) {
-            words = cw; localStorage.setItem('lx_words', vals.lx_words);
-          }
-        } catch(e){}
+    CS.getItems(['lx_words','lx_streak'], (err, vals) => {
+      if (!err && vals) {
+        if (vals.lx_words) {
+          try {
+            const cw = JSON.parse(vals.lx_words);
+            if (Array.isArray(cw) && cw.length >= words.length) {
+              words = cw; localStorage.setItem('lx_words', vals.lx_words);
+            }
+          } catch(e){}
+        }
+        if (vals.lx_streak) {
+          try {
+            const cs = JSON.parse(vals.lx_streak);
+            if (cs && cs.count >= streak.count) {
+              streak = cs; localStorage.setItem('lx_streak', vals.lx_streak);
+            }
+          } catch(e){}
+        }
       }
       cb();
     });
   } catch(e) { cb(); }
+}
+
+// ── WORD SETS ──
+const SETS = [
+  { id:'basic', name:'Топ-50 для начинающих', emoji:'🌱', words:[
+    ["hello","привет"],["thank you","спасибо"],["please","пожалуйста"],["sorry","извини"],["yes","да"],["no","нет"],["good","хороший"],["bad","плохой"],["big","большой"],["small","маленький"],["water","вода"],["food","еда"],["house","дом"],["family","семья"],["friend","друг"],["time","время"],["day","день"],["night","ночь"],["morning","утро"],["evening","вечер"],["love","любить"],["want","хотеть"],["need","нуждаться"],["know","знать"],["think","думать"],["see","видеть"],["hear","слышать"],["speak","говорить"],["read","читать"],["write","писать"],["eat","есть"],["drink","пить"],["sleep","спать"],["work","работать"],["play","играть"],["walk","ходить"],["run","бежать"],["buy","покупать"],["help","помогать"],["open","открывать"],["close","закрывать"],["new","новый"],["old","старый"],["hot","горячий"],["cold","холодный"],["happy","счастливый"],["sad","грустный"],["money","деньги"],["school","школа"],["book","книга"]
+  ]},
+  { id:'ege', name:'Словарь для ЕГЭ', emoji:'🎓', words:[
+    ["achieve","достигать"],["advantage","преимущество"],["although","хотя"],["ancient","древний"],["appropriate","подходящий"],["available","доступный"],["aware","осведомлённый"],["benefit","польза"],["challenge","вызов"],["consider","рассматривать"],["contain","содержать"],["create","создавать"],["decrease","уменьшаться"],["develop","развивать"],["effect","эффект"],["environment","окружающая среда"],["essential","необходимый"],["experience","опыт"],["furthermore","более того"],["however","однако"],["improve","улучшать"],["increase","увеличиваться"],["influence","влияние"],["knowledge","знания"],["nevertheless","тем не менее"],["opportunity","возможность"],["particular","особый"],["prevent","предотвращать"],["provide","предоставлять"],["reduce","сокращать"],["require","требовать"],["research","исследование"],["responsible","ответственный"],["significant","значительный"],["society","общество"],["solution","решение"],["successful","успешный"],["therefore","поэтому"],["various","различный"],["whereas","тогда как"]
+  ]},
+  { id:'phrasal', name:'Фразовые глаголы', emoji:'🔗', words:[
+    ["give up","сдаваться"],["look for","искать"],["look after","заботиться"],["look forward to","ждать с нетерпением"],["find out","выяснять"],["figure out","разбираться"],["get up","вставать"],["wake up","просыпаться"],["go on","продолжать"],["come back","возвращаться"],["put on","надевать"],["take off","снимать"],["turn on","включать"],["turn off","выключать"],["pick up","подбирать"],["give back","возвращать"],["run out of","заканчиваться"],["get along","ладить"],["break down","ломаться"],["carry on","продолжать"],["set up","основывать"],["show up","появляться"],["hang out","тусоваться"],["work out","тренироваться"],["check out","проверять"],["grow up","взрослеть"],["calm down","успокаиваться"],["come up with","придумывать"],["deal with","иметь дело с"],["put off","откладывать"]
+  ]},
+  { id:'travel', name:'Путешествия', emoji:'✈️', words:[
+    ["airport","аэропорт"],["flight","рейс"],["luggage","багаж"],["passport","паспорт"],["ticket","билет"],["boarding pass","посадочный талон"],["departure","вылет"],["arrival","прибытие"],["delay","задержка"],["customs","таможня"],["hotel","гостиница"],["booking","бронирование"],["reception","ресепшн"],["check-in","заселение"],["sightseeing","осмотр достопримечательностей"],["map","карта"],["guide","гид"],["souvenir","сувенир"],["currency","валюта"],["exchange","обмен"],["abroad","за границей"],["journey","путешествие"],["destination","пункт назначения"],["backpack","рюкзак"],["beach","пляж"],["mountain","гора"],["embassy","посольство"],["insurance","страховка"],["timetable","расписание"],["return ticket","обратный билет"]
+  ]},
+  { id:'it', name:'IT и технологии', emoji:'💻', words:[
+    ["device","устройство"],["software","программное обеспечение"],["hardware","железо"],["network","сеть"],["server","сервер"],["database","база данных"],["code","код"],["developer","разработчик"],["bug","баг"],["feature","функция"],["update","обновление"],["download","скачивать"],["upload","загружать"],["browser","браузер"],["search engine","поисковик"],["artificial intelligence","искусственный интеллект"],["machine learning","машинное обучение"],["cloud","облако"],["security","безопасность"],["encryption","шифрование"],["backup","резервная копия"],["interface","интерфейс"],["application","приложение"],["screen","экран"],["wireless","беспроводной"],["charge","заряжать"],["storage","хранилище"],["account","аккаунт"],["settings","настройки"],["notification","уведомление"]
+  ]},
+  { id:'emotions', name:'Эмоции и чувства', emoji:'💭', words:[
+    ["joy","радость"],["anger","гнев"],["fear","страх"],["surprise","удивление"],["disgust","отвращение"],["anxiety","тревога"],["excitement","восторг"],["boredom","скука"],["jealousy","ревность"],["envy","зависть"],["pride","гордость"],["shame","стыд"],["guilt","вина"],["relief","облегчение"],["hope","надежда"],["despair","отчаяние"],["confusion","растерянность"],["curiosity","любопытство"],["gratitude","благодарность"],["loneliness","одиночество"],["confidence","уверенность"],["doubt","сомнение"],["passion","страсть"],["affection","привязанность"],["frustration","разочарование"],["delight","восхищение"],["grief","горе"],["calm","спокойствие"],["nervous","нервный"],["cheerful","жизнерадостный"]
+  ]},
+  { id:'work', name:'Работа и бизнес', emoji:'💼', words:[
+    ["salary","зарплата"],["interview","собеседование"],["resume","резюме"],["employer","работодатель"],["employee","сотрудник"],["colleague","коллега"],["deadline","дедлайн"],["meeting","совещание"],["schedule","график"],["promotion","повышение"],["experience","опыт"],["skill","навык"],["responsibility","ответственность"],["task","задача"],["report","отчёт"],["contract","контракт"],["negotiation","переговоры"],["client","клиент"],["customer","покупатель"],["profit","прибыль"],["loss","убыток"],["investment","инвестиция"],["budget","бюджет"],["partnership","партнёрство"],["startup","стартап"],["career","карьера"],["overtime","сверхурочные"],["vacation","отпуск"],["dismiss","увольнять"],["hire","нанимать"]
+  ]},
+  { id:'appearance', name:'Внешность и характер', emoji:'🧍', words:[
+    ["tall","высокий"],["short","низкий"],["slim","стройный"],["plump","полный"],["handsome","красивый (о мужчине)"],["pretty","симпатичная"],["curly","кудрявый"],["straight","прямой"],["blond","светловолосый"],["beard","борода"],["freckles","веснушки"],["wrinkles","морщины"],["kind","добрый"],["cruel","жестокий"],["generous","щедрый"],["greedy","жадный"],["honest","честный"],["lazy","ленивый"],["hardworking","трудолюбивый"],["brave","смелый"],["shy","застенчивый"],["polite","вежливый"],["rude","грубый"],["stubborn","упрямый"],["patient","терпеливый"],["sociable","общительный"],["reliable","надёжный"],["modest","скромный"],["ambitious","амбициозный"],["sense of humor","чувство юмора"]
+  ]},
+  { id:'home', name:'Дом и быт', emoji:'🏠', words:[
+    ["furniture","мебель"],["wardrobe","шкаф"],["shelf","полка"],["drawer","ящик"],["curtains","шторы"],["carpet","ковёр"],["pillow","подушка"],["blanket","одеяло"],["towel","полотенце"],["fridge","холодильник"],["oven","духовка"],["kettle","чайник"],["washing machine","стиральная машина"],["vacuum cleaner","пылесос"],["iron","утюг"],["dishes","посуда"],["laundry","стирка"],["repair","ремонт"],["rent","аренда"],["neighbor","сосед"],["stairs","лестница"],["elevator","лифт"],["balcony","балкон"],["basement","подвал"],["attic","чердак"],["fence","забор"],["yard","двор"],["key","ключ"],["lock","замок"],["switch","выключатель"]
+  ]},
+  { id:'nature', name:'Природа и погода', emoji:'🌦', words:[
+    ["weather","погода"],["forecast","прогноз"],["sunshine","солнечный свет"],["rainbow","радуга"],["thunderstorm","гроза"],["lightning","молния"],["thunder","гром"],["fog","туман"],["frost","мороз"],["hail","град"],["breeze","лёгкий ветер"],["hurricane","ураган"],["flood","наводнение"],["drought","засуха"],["earthquake","землетрясение"],["waterfall","водопад"],["valley","долина"],["cliff","утёс"],["desert","пустыня"],["jungle","джунгли"],["swamp","болото"],["meadow","луг"],["sunrise","рассвет"],["sunset","закат"],["humidity","влажность"],["temperature","температура"],["climate","климат"],["pollution","загрязнение"],["wildlife","дикая природа"],["landscape","пейзаж"]
+  ]},
+  { id:'slang', name:'Разговорный английский', emoji:'💬', words:[
+    ["awesome","потрясающий"],["cool","клёвый"],["dude","чувак"],["buddy","приятель"],["hang on","подожди"],["no way","да ладно"],["what's up","как дела"],["my bad","моя вина"],["never mind","неважно"],["kind of","типа"],["sort of","вроде того"],["gonna","собираюсь"],["wanna","хочу"],["gotta","должен"],["chill","расслабляться"],["weird","странный"],["creepy","жуткий"],["cheesy","банальный"],["awkward","неловкий"],["epic","эпичный"],["lame","отстойный"],["sick","крутой (сленг)"],["lit","огонь (сленг)"],["cringe","кринж"],["vibe","вайб"],["fair enough","справедливо"],["whatever","как угодно"],["literally","буквально"],["basically","по сути"],["totally","полностью"]
+  ]},
+  { id:'sport', name:'Спорт и здоровье', emoji:'⚽', words:[
+    ["exercise","упражнение"],["training","тренировка"],["coach","тренер"],["competition","соревнование"],["championship","чемпионат"],["victory","победа"],["defeat","поражение"],["score","счёт"],["goal","гол"],["team","команда"],["referee","судья"],["stadium","стадион"],["strength","сила"],["endurance","выносливость"],["flexibility","гибкость"],["muscle","мышца"],["injury","травма"],["recovery","восстановление"],["warm-up","разминка"],["stretching","растяжка"],["swimming","плавание"],["weightlifting","тяжёлая атлетика"],["jogging","бег трусцой"],["healthy","здоровый"],["diet","диета"],["nutrition","питание"],["protein","белок"],["habit","привычка"],["sweat","пот"],["champion","чемпион"]
+  ]}
+];
+
+function toggleSets() {
+  const box = document.getElementById('sets-box');
+  const btn = document.querySelector('.sets-toggle');
+  const open = box.style.display === 'none';
+  box.style.display = open ? 'block' : 'none';
+  btn.classList.toggle('open', open);
+  if (open) renderSets();
+}
+
+let openSet = null;
+
+function renderSets() {
+  const box = document.getElementById('sets-box');
+  box.innerHTML = SETS.map(s => {
+    const have = s.words.filter(([en]) => words.some(w => w.en.toLowerCase() === en.toLowerCase())).length;
+    const all = have >= s.words.length;
+    const isOpen = openSet === s.id;
+    let preview = '';
+    if (isOpen) {
+      preview = '<div class="set-preview">' + s.words.map(([en, ru]) => {
+        const has = words.some(w => w.en.toLowerCase() === en.toLowerCase());
+        return '<div class="sp-row' + (has ? ' has' : '') + '"><span class="sp-en">' + esc(en) + '</span><span class="sp-ru">' + esc(ru) + '</span>' + (has ? '<span class="sp-check">✓</span>' : '') + '</div>';
+      }).join('') + '</div>';
+    }
+    return '<div class="set-wrap' + (isOpen ? ' open' : '') + '">' +
+      '<div class="set-card" onclick="togglePreview(\'' + s.id + '\')">' +
+        '<div class="set-emoji">' + s.emoji + '</div>' +
+        '<div class="set-i">' +
+          '<div class="set-n">' + esc(s.name) + '</div>' +
+          '<div class="set-c">' + s.words.length + ' слов' + (have ? ' · ' + have + ' есть' : '') + '</div>' +
+        '</div>' +
+        '<button class="set-add' + (all ? ' done' : '') + '" onclick="event.stopPropagation();addSet(\'' + s.id + '\')">' + (all ? '✓' : '+ Добавить') + '</button>' +
+        '<svg class="set-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>' +
+      '</div>' + preview + '</div>';
+  }).join('');
+}
+
+function togglePreview(id) {
+  openSet = (openSet === id) ? null : id;
+  renderSets();
+  haptic('sel');
+}
+
+function addSet(id) {
+  const s = SETS.find(x => x.id === id);
+  if (!s) return;
+  let added = 0;
+  s.words.forEach(([en, ru]) => {
+    if (!words.some(w => w.en.toLowerCase() === en.toLowerCase())) {
+      words.push({ id: Date.now() + Math.random(), en: en.charAt(0).toUpperCase() + en.slice(1), ru });
+      added++;
+    }
+  });
+  if (added) { save(); renderList(); toast('Добавлено ' + added + ' ' + plural(added,'слово','слова','слов')); haptic('ok'); }
+  else toast('Все слова уже добавлены');
+  renderSets();
+}
+
+// ── STREAK ──
+let streak = { count: 0, last: '' };
+try { streak = JSON.parse(localStorage.getItem('lx_streak') || '{"count":0,"last":""}'); } catch(e){}
+
+function todayStr() { return new Date().toISOString().slice(0, 10); }
+
+function bumpStreak() {
+  const t = todayStr();
+  if (streak.last === t) return;
+  const y = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  const continued = streak.last === y;
+  streak.count = continued ? streak.count + 1 : 1;
+  streak.last = t;
+  localStorage.setItem('lx_streak', JSON.stringify(streak));
+  if (CS) { try { CS.setItem('lx_streak', JSON.stringify(streak)); } catch(e){} }
+  renderStreak();
+  showStreakPop(streak.count, continued);
+}
+
+let spTimer = null;
+function showStreakPop(count, continued) {
+  const pop = document.getElementById('streak-pop');
+  const num = document.getElementById('sp-num');
+  const lbl = document.getElementById('sp-lbl');
+  if (count === 1) {
+    num.textContent = 'Серия начата!';
+    num.style.fontSize = 'clamp(20px,6vw,28px)';
+    lbl.textContent = 'Первый день обучения';
+  } else {
+    num.textContent = count + ' ' + plural(count,'день','дня','дней');
+    num.style.fontSize = '';
+    lbl.textContent = continued ? 'Серия продолжается!' : 'Новая серия!';
+  }
+  pop.classList.add('show');
+  haptic('ok');
+  clearTimeout(spTimer);
+  spTimer = setTimeout(hideStreakPop, 3200);
+}
+
+function hideStreakPop() {
+  document.getElementById('streak-pop').classList.remove('show');
+  clearTimeout(spTimer);
+}
+
+function renderStreak() {
+  const b = document.getElementById('streak-b');
+  // streak is alive if last activity was today or yesterday
+  const t = todayStr();
+  const y = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  if (streak.count > 0 && (streak.last === t || streak.last === y)) {
+    b.style.display = 'flex';
+    document.getElementById('streak-n').textContent = streak.count;
+  } else {
+    b.style.display = 'none';
+  }
+}
+
+// ── TTS (озвучка) ──
+function speak(word, ev) {
+  if (ev) ev.stopPropagation();
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US';
+    u.rate = 0.9;
+    speechSynthesis.speak(u);
+    haptic('light');
+  } catch(e) { toast('Озвучка недоступна'); }
 }
 
 // ── NAV ──
@@ -374,6 +606,7 @@ function addWord() {
   renderList();
   toast('Добавлено: ' + en);
   haptic('light');
+  bumpStreak();
 }
 
 function delWord(id) {
@@ -424,7 +657,9 @@ function renderFlash() {
     '<div class="prog"><div class="prog-t"><div class="prog-f" style="width:' + p + '%"></div></div>' +
     '<div class="prog-m"><span>Прогресс</span><span>' + p + '%</span></div></div>' +
     '<div class="scene" onclick="flip()"><div class="cin" id="cin">' +
-      '<div class="cf f1"><div class="c-chip">English</div><div class="c-word">' + esc(w.en) + '</div>' +
+      '<div class="cf f1"><div class="c-chip">English</div>' +
+      '<div style="display:flex;align-items:center;gap:10px;max-width:100%"><div class="c-word">' + esc(w.en) + '</div>' +
+      '<button class="spk" onclick="speak(\'' + esc(w.en) + '\', event)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg></button></div>' +
       '<div class="c-tap">нажми — увидишь перевод</div></div>' +
       '<div class="cf f2"><div class="c-chip">Перевод</div><div class="c-word">' + esc(w.ru) + '</div></div>' +
     '</div></div>' +
@@ -439,7 +674,7 @@ function flip() {
   const c = document.getElementById('cin');
   if (c) { c.classList.toggle('fl'); haptic('sel'); }
 }
-function fnext(ok) { if (ok) toast('Отлично!'); flashIdx++; renderFlash(); }
+function fnext(ok) { if (ok) toast('Отлично!'); flashIdx++; bumpStreak(); renderFlash(); }
 
 // ── QUIZ ──
 function initQuiz() {
@@ -466,7 +701,9 @@ function nextQ() {
   const opts = shuffle([quizQ, ...shuffle(others).slice(0, Math.min(3, others.length))]);
   b.innerHTML =
     '<div style="display:flex;flex-direction:column;gap:12px">' +
-    '<div class="q-card"><div class="q-sub">Переведи</div><div class="q-word">' + esc(quizQ.en) + '</div></div>' +
+    '<div class="q-card"><div class="q-sub">Переведи</div>' +
+    '<div style="display:flex;align-items:center;gap:10px;max-width:100%"><div class="q-word">' + esc(quizQ.en) + '</div>' +
+    '<button class="spk" onclick="speak(\'' + esc(quizQ.en) + '\', event)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg></button></div></div>' +
     '<div class="q-opts">' + opts.map(o =>
       '<button class="q-o" onclick="checkQ(this,' + o.id + ')">' + esc(o.ru) + '</button>'
     ).join('') + '</div>' +
@@ -491,6 +728,7 @@ function checkQ(btn, id) {
     haptic('err');
   }
   updQ();
+  bumpStreak();
   document.getElementById('q-n').style.display = 'inline-block';
 }
 
@@ -525,7 +763,7 @@ document.addEventListener('keydown', e => {
     if (t9) { e.preventDefault(); t9.click(); }
   }
 });
-loadCloud(() => renderList());
+loadCloud(() => { renderList(); renderStreak(); });
 </script>
 </body>
 </html>
