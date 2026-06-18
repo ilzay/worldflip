@@ -141,6 +141,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .q-s.r{color:var(--red)}
 .q-duel{background:var(--gold-dim);border:1px solid rgba(255,213,107,.3);border-radius:20px;padding:4px 11px;font-size:clamp(10px,2.8vw,12px);font-weight:700;font-family:'Inter',sans-serif;color:var(--gold);cursor:pointer;white-space:nowrap;transition:transform .15s}
 .q-duel:active{transform:scale(.94)}
+.leveltest-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;background:linear-gradient(135deg,rgba(107,184,255,.14),rgba(52,230,171,.08));border:1px solid rgba(107,184,255,.3);border-radius:var(--r2);padding:clamp(12px,3.5vw,16px);cursor:pointer;transition:transform .15s;color:var(--text);font-family:'Inter',sans-serif;text-align:left;flex-shrink:0}
+.leveltest-bar:active{transform:scale(.985)}
+.lt-i{min-width:0;flex:1}
+.lt-t{font-weight:800;font-size:clamp(13px,3.8vw,15px)}
+.lt-s{font-size:clamp(10px,2.9vw,12px);color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.leveltest-bar svg{color:var(--blue);flex-shrink:0}
+.lt-result{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:24px 10px}
+.lt-badge{font-family:'Unbounded',sans-serif;font-size:clamp(44px,13vw,60px);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--acc),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lt-name{font-size:clamp(15px,4.4vw,19px);font-weight:800}
+.lt-desc{font-size:clamp(12px,3.4vw,14px);color:var(--muted);line-height:1.7;max-width:300px}
+.lt-bar2{width:100%;max-width:300px;height:8px;background:var(--s3);border-radius:4px;overflow:hidden;margin-top:4px}
+.lt-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--blue));border-radius:4px}
+.lt-scale{display:flex;justify-content:space-between;width:100%;max-width:300px;font-size:10px;color:var(--muted2);font-weight:700;margin-top:-8px}
+.lt-prog{font-size:clamp(11px,3vw,13px);color:var(--muted);font-weight:600}
 .q-card{background:var(--s1);border:1px solid var(--border2);border-radius:var(--r2);padding:clamp(20px,6vw,30px) clamp(14px,4vw,20px);display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
 .q-sub{font-size:clamp(9px,2.4vw,11px);font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
 .q-word{font-family:'Unbounded',sans-serif;font-size:clamp(20px,7vw,32px);font-weight:600;text-align:center;line-height:1.2;word-break:break-word;max-width:100%}
@@ -191,11 +205,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .stat-v.g{color:var(--acc)}
 .stat-v.gold{color:var(--gold)}
 .stat-l{font-size:clamp(9px,2.6vw,11px);color:var(--muted);font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
-.cal{display:grid;grid-template-columns:repeat(14,1fr);gap:clamp(3px,1.2vw,5px)}
-.cal-d{aspect-ratio:1;border-radius:3px;background:var(--s3)}
-.cal-d.l1{background:rgba(52,230,171,.3)}
-.cal-d.l2{background:rgba(52,230,171,.6)}
-.cal-d.l3{background:var(--acc)}
+.month-card{display:flex;align-items:center;gap:clamp(12px,4vw,16px);background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:clamp(13px,3.8vw,17px)}
+.month-big{font-family:'Unbounded',sans-serif;font-size:clamp(30px,9vw,42px);font-weight:800;color:var(--acc);line-height:1;flex-shrink:0;min-width:clamp(44px,12vw,56px);text-align:center}
+.month-i{min-width:0;flex:1}
+.month-t{font-size:clamp(13px,3.8vw,15px);font-weight:700}
+.month-s{font-size:clamp(11px,3.2vw,13px);color:var(--muted);margin-top:2px}
+.lvl-card{display:flex;align-items:center;gap:clamp(11px,3.5vw,15px);background:linear-gradient(135deg,rgba(107,184,255,.13),rgba(52,230,171,.08));border:1px solid rgba(107,184,255,.3);border-radius:var(--r2);padding:clamp(13px,3.8vw,16px);cursor:pointer;transition:transform .15s;min-width:0}
+.lvl-card:active{transform:scale(.985)}
+.lvl-card.empty{background:var(--s1);border-color:var(--border2)}
+.lvl-badge2{font-family:'Unbounded',sans-serif;font-size:clamp(22px,6.5vw,30px);font-weight:800;background:linear-gradient(135deg,var(--acc),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;min-width:clamp(40px,11vw,52px);text-align:center}
+.lvl-badge2.q{color:var(--muted2);-webkit-text-fill-color:var(--muted2)}
+.lvl-i{min-width:0;flex:1}
+.lvl-t{font-size:clamp(10px,2.9vw,12px);color:var(--muted);font-weight:600}
+.lvl-n{font-size:clamp(13px,3.8vw,15px);font-weight:700;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lvl-redo{font-size:clamp(9px,2.6vw,11px);color:var(--blue);font-weight:700;flex-shrink:0;white-space:nowrap}
 .ach-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .ach{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:clamp(10px,3vw,13px) 6px;text-align:center;opacity:.4;transition:opacity .2s;min-width:0}
 .ach.got{opacity:1;border-color:var(--border2)}
@@ -233,6 +256,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .set-wrap{margin-bottom:7px}
 .set-wrap .set-card{margin-bottom:0;cursor:pointer}
 .set-emoji{font-size:clamp(17px,5vw,21px);flex-shrink:0}
+.set-lvl{display:inline-block;font-size:clamp(8px,2.4vw,10px);font-weight:800;letter-spacing:.03em;padding:2px 6px;border-radius:6px;vertical-align:middle;margin-left:2px}
+.set-lvl.A1,.set-lvl.A2{background:rgba(52,230,171,.18);color:var(--acc2)}
+.set-lvl.B1,.set-lvl.B2{background:rgba(255,213,107,.16);color:var(--gold)}
+.set-lvl.C1,.set-lvl.C2{background:rgba(255,129,137,.16);color:var(--red)}
 .set-arr{color:var(--muted2);transition:transform .25s;flex-shrink:0}
 .set-wrap.open .set-arr{transform:rotate(180deg)}
 .set-preview{background:var(--s2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r);max-height:240px;overflow-y:auto;scrollbar-width:none;animation:up .2s ease}
@@ -257,6 +284,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .spk:active{transform:scale(.9);background:var(--acc-dim)}
 .spk svg{width:55%;height:55%}
 .center{display:flex;justify-content:center}
+.cheer{position:fixed;bottom:calc(var(--nav-h) + 16px);left:50%;transform:translateX(-50%) translateY(16px) scale(.92);display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(52,230,171,.95),rgba(134,245,208,.95));color:#04120c;font-weight:800;font-size:clamp(14px,4vw,17px);padding:clamp(10px,3vw,14px) clamp(18px,5vw,26px);border-radius:30px;box-shadow:0 8px 32px rgba(52,230,171,.4);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:1001;max-width:88vw;text-align:center}
+.cheer.show{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+.cheer.mini{background:rgba(22,38,30,.96);color:var(--acc2);border:1px solid var(--border2);font-size:clamp(12px,3.4vw,14px);box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.cheer-e{font-size:clamp(18px,5vw,22px)}
 </style>
 </head>
 <body>
@@ -342,6 +373,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
           <div class="q-s r">✗ <span id="qw">0</span></div>
         </div>
       </div>
+      <button class="leveltest-bar" onclick="startLevelTest()">
+        <div class="lt-i">
+          <div class="lt-t">🎯 Узнать свой уровень</div>
+          <div class="lt-s" id="lt-sub">Пройди тест и узнай свой уровень английского</div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
       <div id="q-body"></div>
     </div>
 
@@ -380,6 +418,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
     <div class="streak-sub" id="sp-sub">Возвращайся завтра, чтобы продолжить серию</div>
   </div>
 </div>
+<div class="cheer" id="cheer"></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -465,6 +504,7 @@ function loadCloud(cb) {
           } catch(e){}
         }
         if (vals.lx_goal) { goalDaily = parseInt(vals.lx_goal) || goalDaily; localStorage.setItem('lx_goal', String(goalDaily)); }
+        if (vals.lx_level) { localStorage.setItem('lx_level', vals.lx_level); }
       }
       cb();
     });
@@ -473,40 +513,40 @@ function loadCloud(cb) {
 
 // ── WORD SETS ──
 const SETS = [
-  { id:'basic', name:'Топ-50 для начинающих', emoji:'🌱', words:[
+  { id:'basic', level:'A1', name:'Топ-50 для начинающих', emoji:'🌱', words:[
     ["hello","привет"],["thank you","спасибо"],["please","пожалуйста"],["sorry","извини"],["yes","да"],["no","нет"],["good","хороший"],["bad","плохой"],["big","большой"],["small","маленький"],["water","вода"],["food","еда"],["house","дом"],["family","семья"],["friend","друг"],["time","время"],["day","день"],["night","ночь"],["morning","утро"],["evening","вечер"],["love","любить"],["want","хотеть"],["need","нуждаться"],["know","знать"],["think","думать"],["see","видеть"],["hear","слышать"],["speak","говорить"],["read","читать"],["write","писать"],["eat","есть"],["drink","пить"],["sleep","спать"],["work","работать"],["play","играть"],["walk","ходить"],["run","бежать"],["buy","покупать"],["help","помогать"],["open","открывать"],["close","закрывать"],["new","новый"],["old","старый"],["hot","горячий"],["cold","холодный"],["happy","счастливый"],["sad","грустный"],["money","деньги"],["school","школа"],["book","книга"]
   ]},
-  { id:'ege', name:'Словарь для ЕГЭ', emoji:'🎓', words:[
+  { id:'ege', level:'B2', name:'Словарь для ЕГЭ', emoji:'🎓', words:[
     ["achieve","достигать"],["advantage","преимущество"],["although","хотя"],["ancient","древний"],["appropriate","подходящий"],["available","доступный"],["aware","осведомлённый"],["benefit","польза"],["challenge","вызов"],["consider","рассматривать"],["contain","содержать"],["create","создавать"],["decrease","уменьшаться"],["develop","развивать"],["effect","эффект"],["environment","окружающая среда"],["essential","необходимый"],["experience","опыт"],["furthermore","более того"],["however","однако"],["improve","улучшать"],["increase","увеличиваться"],["influence","влияние"],["knowledge","знания"],["nevertheless","тем не менее"],["opportunity","возможность"],["particular","особый"],["prevent","предотвращать"],["provide","предоставлять"],["reduce","сокращать"],["require","требовать"],["research","исследование"],["responsible","ответственный"],["significant","значительный"],["society","общество"],["solution","решение"],["successful","успешный"],["therefore","поэтому"],["various","различный"],["whereas","тогда как"]
   ]},
-  { id:'phrasal', name:'Фразовые глаголы', emoji:'🔗', words:[
+  { id:'phrasal', level:'B1', name:'Фразовые глаголы', emoji:'🔗', words:[
     ["give up","сдаваться"],["look for","искать"],["look after","заботиться"],["look forward to","ждать с нетерпением"],["find out","выяснять"],["figure out","разбираться"],["get up","вставать"],["wake up","просыпаться"],["go on","продолжать"],["come back","возвращаться"],["put on","надевать"],["take off","снимать"],["turn on","включать"],["turn off","выключать"],["pick up","подбирать"],["give back","возвращать"],["run out of","заканчиваться"],["get along","ладить"],["break down","ломаться"],["carry on","продолжать"],["set up","основывать"],["show up","появляться"],["hang out","тусоваться"],["work out","тренироваться"],["check out","проверять"],["grow up","взрослеть"],["calm down","успокаиваться"],["come up with","придумывать"],["deal with","иметь дело с"],["put off","откладывать"]
   ]},
-  { id:'travel', name:'Путешествия', emoji:'✈️', words:[
+  { id:'travel', level:'A2', name:'Путешествия', emoji:'✈️', words:[
     ["airport","аэропорт"],["flight","рейс"],["luggage","багаж"],["passport","паспорт"],["ticket","билет"],["boarding pass","посадочный талон"],["departure","вылет"],["arrival","прибытие"],["delay","задержка"],["customs","таможня"],["hotel","гостиница"],["booking","бронирование"],["reception","ресепшн"],["check-in","заселение"],["sightseeing","осмотр достопримечательностей"],["map","карта"],["guide","гид"],["souvenir","сувенир"],["currency","валюта"],["exchange","обмен"],["abroad","за границей"],["journey","путешествие"],["destination","пункт назначения"],["backpack","рюкзак"],["beach","пляж"],["mountain","гора"],["embassy","посольство"],["insurance","страховка"],["timetable","расписание"],["return ticket","обратный билет"]
   ]},
-  { id:'it', name:'IT и технологии', emoji:'💻', words:[
+  { id:'it', level:'B2', name:'IT и технологии', emoji:'💻', words:[
     ["device","устройство"],["software","программное обеспечение"],["hardware","железо"],["network","сеть"],["server","сервер"],["database","база данных"],["code","код"],["developer","разработчик"],["bug","баг"],["feature","функция"],["update","обновление"],["download","скачивать"],["upload","загружать"],["browser","браузер"],["search engine","поисковик"],["artificial intelligence","искусственный интеллект"],["machine learning","машинное обучение"],["cloud","облако"],["security","безопасность"],["encryption","шифрование"],["backup","резервная копия"],["interface","интерфейс"],["application","приложение"],["screen","экран"],["wireless","беспроводной"],["charge","заряжать"],["storage","хранилище"],["account","аккаунт"],["settings","настройки"],["notification","уведомление"]
   ]},
-  { id:'emotions', name:'Эмоции и чувства', emoji:'💭', words:[
+  { id:'emotions', level:'B1', name:'Эмоции и чувства', emoji:'💭', words:[
     ["joy","радость"],["anger","гнев"],["fear","страх"],["surprise","удивление"],["disgust","отвращение"],["anxiety","тревога"],["excitement","восторг"],["boredom","скука"],["jealousy","ревность"],["envy","зависть"],["pride","гордость"],["shame","стыд"],["guilt","вина"],["relief","облегчение"],["hope","надежда"],["despair","отчаяние"],["confusion","растерянность"],["curiosity","любопытство"],["gratitude","благодарность"],["loneliness","одиночество"],["confidence","уверенность"],["doubt","сомнение"],["passion","страсть"],["affection","привязанность"],["frustration","разочарование"],["delight","восхищение"],["grief","горе"],["calm","спокойствие"],["nervous","нервный"],["cheerful","жизнерадостный"]
   ]},
-  { id:'work', name:'Работа и бизнес', emoji:'💼', words:[
+  { id:'work', level:'B2', name:'Работа и бизнес', emoji:'💼', words:[
     ["salary","зарплата"],["interview","собеседование"],["resume","резюме"],["employer","работодатель"],["employee","сотрудник"],["colleague","коллега"],["deadline","дедлайн"],["meeting","совещание"],["schedule","график"],["promotion","повышение"],["experience","опыт"],["skill","навык"],["responsibility","ответственность"],["task","задача"],["report","отчёт"],["contract","контракт"],["negotiation","переговоры"],["client","клиент"],["customer","покупатель"],["profit","прибыль"],["loss","убыток"],["investment","инвестиция"],["budget","бюджет"],["partnership","партнёрство"],["startup","стартап"],["career","карьера"],["overtime","сверхурочные"],["vacation","отпуск"],["dismiss","увольнять"],["hire","нанимать"]
   ]},
-  { id:'appearance', name:'Внешность и характер', emoji:'🧍', words:[
+  { id:'appearance', level:'A2', name:'Внешность и характер', emoji:'🧍', words:[
     ["tall","высокий"],["short","низкий"],["slim","стройный"],["plump","полный"],["handsome","красивый (о мужчине)"],["pretty","симпатичная"],["curly","кудрявый"],["straight","прямой"],["blond","светловолосый"],["beard","борода"],["freckles","веснушки"],["wrinkles","морщины"],["kind","добрый"],["cruel","жестокий"],["generous","щедрый"],["greedy","жадный"],["honest","честный"],["lazy","ленивый"],["hardworking","трудолюбивый"],["brave","смелый"],["shy","застенчивый"],["polite","вежливый"],["rude","грубый"],["stubborn","упрямый"],["patient","терпеливый"],["sociable","общительный"],["reliable","надёжный"],["modest","скромный"],["ambitious","амбициозный"],["sense of humor","чувство юмора"]
   ]},
-  { id:'home', name:'Дом и быт', emoji:'🏠', words:[
+  { id:'home', level:'A2', name:'Дом и быт', emoji:'🏠', words:[
     ["furniture","мебель"],["wardrobe","шкаф"],["shelf","полка"],["drawer","ящик"],["curtains","шторы"],["carpet","ковёр"],["pillow","подушка"],["blanket","одеяло"],["towel","полотенце"],["fridge","холодильник"],["oven","духовка"],["kettle","чайник"],["washing machine","стиральная машина"],["vacuum cleaner","пылесос"],["iron","утюг"],["dishes","посуда"],["laundry","стирка"],["repair","ремонт"],["rent","аренда"],["neighbor","сосед"],["stairs","лестница"],["elevator","лифт"],["balcony","балкон"],["basement","подвал"],["attic","чердак"],["fence","забор"],["yard","двор"],["key","ключ"],["lock","замок"],["switch","выключатель"]
   ]},
-  { id:'nature', name:'Природа и погода', emoji:'🌦', words:[
+  { id:'nature', level:'B1', name:'Природа и погода', emoji:'🌦', words:[
     ["weather","погода"],["forecast","прогноз"],["sunshine","солнечный свет"],["rainbow","радуга"],["thunderstorm","гроза"],["lightning","молния"],["thunder","гром"],["fog","туман"],["frost","мороз"],["hail","град"],["breeze","лёгкий ветер"],["hurricane","ураган"],["flood","наводнение"],["drought","засуха"],["earthquake","землетрясение"],["waterfall","водопад"],["valley","долина"],["cliff","утёс"],["desert","пустыня"],["jungle","джунгли"],["swamp","болото"],["meadow","луг"],["sunrise","рассвет"],["sunset","закат"],["humidity","влажность"],["temperature","температура"],["climate","климат"],["pollution","загрязнение"],["wildlife","дикая природа"],["landscape","пейзаж"]
   ]},
-  { id:'slang', name:'Разговорный английский', emoji:'💬', words:[
+  { id:'slang', level:'B1', name:'Разговорный английский', emoji:'💬', words:[
     ["awesome","потрясающий"],["cool","клёвый"],["dude","чувак"],["buddy","приятель"],["hang on","подожди"],["no way","да ладно"],["what's up","как дела"],["my bad","моя вина"],["never mind","неважно"],["kind of","типа"],["sort of","вроде того"],["gonna","собираюсь"],["wanna","хочу"],["gotta","должен"],["chill","расслабляться"],["weird","странный"],["creepy","жуткий"],["cheesy","банальный"],["awkward","неловкий"],["epic","эпичный"],["lame","отстойный"],["sick","крутой (сленг)"],["lit","огонь (сленг)"],["cringe","кринж"],["vibe","вайб"],["fair enough","справедливо"],["whatever","как угодно"],["literally","буквально"],["basically","по сути"],["totally","полностью"]
   ]},
-  { id:'sport', name:'Спорт и здоровье', emoji:'⚽', words:[
+  { id:'sport', level:'A2', name:'Спорт и здоровье', emoji:'⚽', words:[
     ["exercise","упражнение"],["training","тренировка"],["coach","тренер"],["competition","соревнование"],["championship","чемпионат"],["victory","победа"],["defeat","поражение"],["score","счёт"],["goal","гол"],["team","команда"],["referee","судья"],["stadium","стадион"],["strength","сила"],["endurance","выносливость"],["flexibility","гибкость"],["muscle","мышца"],["injury","травма"],["recovery","восстановление"],["warm-up","разминка"],["stretching","растяжка"],["swimming","плавание"],["weightlifting","тяжёлая атлетика"],["jogging","бег трусцой"],["healthy","здоровый"],["diet","диета"],["nutrition","питание"],["protein","белок"],["habit","привычка"],["sweat","пот"],["champion","чемпион"]
   ]}
 ];
@@ -571,7 +611,7 @@ function renderSets() {
       '<div class="set-card" onclick="togglePreview(\'' + s.id + '\')">' +
         '<div class="set-emoji">' + s.emoji + '</div>' +
         '<div class="set-i">' +
-          '<div class="set-n">' + esc(s.name) + '</div>' +
+          '<div class="set-n">' + esc(s.name) + ' <span class="set-lvl ' + (s.level||'') + '">' + (s.level||'') + '</span></div>' +
           '<div class="set-c">' + s.words.length + ' слов' + (have ? ' · ' + have + ' есть' : '') + '</div>' +
         '</div>' +
         '<button class="set-add' + (all ? ' done' : '') + '" onclick="event.stopPropagation();addSet(\'' + s.id + '\')">' + (all ? '✓' : '+ Добавить') + '</button>' +
@@ -765,7 +805,7 @@ function nav(id, btn) {
   btn.classList.add('active');
   if (id === 'prof') renderProfile();
   if (id === 'flash') initFlash();
-  if (id === 'quiz') initQuiz();
+  if (id === 'quiz') { const lb=document.querySelector('.leveltest-bar'); if(lb)lb.style.display='flex'; ltState=null; initQuiz(); }
   renderList();
 }
 
@@ -916,15 +956,56 @@ function fnext(ok) {
 
 // ── QUIZ ──
 let inDuel = false;
-function initQuiz(duel) {
-  qC = 0; qW = 0;
+let quizPool = [];
+let quizAnswered = 0;
+
+function saveQuizSession() {
+  if (inDuel) return;
+  const sess = {
+    queue: quizQueue.map(w => w.id),
+    qC, qW, quizAnswered,
+    ts: Date.now()
+  };
+  localStorage.setItem('lx_quizsess', JSON.stringify(sess));
+}
+
+function clearQuizSession() {
+  localStorage.removeItem('lx_quizsess');
+}
+
+function loadQuizSession() {
+  try {
+    const s = JSON.parse(localStorage.getItem('lx_quizsess') || 'null');
+    if (!s) return null;
+    if (Date.now() - s.ts > 3600000) { clearQuizSession(); return null; } // older than 1h
+    // rebuild queue from ids that still exist
+    const byId = {};
+    words.forEach(w => byId[w.id] = w);
+    const queue = s.queue.map(id => byId[id]).filter(Boolean);
+    if (queue.length === 0) { clearQuizSession(); return null; }
+    return { queue, qC: s.qC, qW: s.qW, quizAnswered: s.quizAnswered };
+  } catch(e) { return null; }
+}
+
+function initQuiz(duel, forceNew) {
   inDuel = !!duel;
   const pool = (duel && duelWords) ? duelWords : words;
-  quizQueue = duel ? shuffle([...pool]) : srsOrder(pool);
   quizPool = pool;
+  // try resume saved session (only for normal mode)
+  if (!duel && !forceNew) {
+    const s = loadQuizSession();
+    if (s) {
+      quizQueue = s.queue;
+      qC = s.qC; qW = s.qW; quizAnswered = s.quizAnswered;
+      updQ(); nextQ();
+      return;
+    }
+  }
+  qC = 0; qW = 0; quizAnswered = 0;
+  quizQueue = duel ? shuffle([...pool]) : srsOrder(pool);
+  clearQuizSession();
   updQ(); nextQ();
 }
-let quizPool = [];
 
 function nextQ() {
   const b = document.getElementById('q-body');
@@ -932,6 +1013,7 @@ function nextQ() {
   if (!activePool.length) { b.innerHTML = '<div class="nocards">Сначала добавь слова</div>'; return; }
   if (activePool.length < 2) { b.innerHTML = '<div class="nocards">Нужно хотя бы 2 слова</div>'; return; }
   if (!quizQueue.length) {
+    clearQuizSession();
     const total = qC + qW;
     const pct = total ? Math.round(qC/total*100) : 0;
     if (inDuel) {
@@ -947,7 +1029,7 @@ function nextQ() {
         '<div class="res-t">' + (qC >= qW ? 'Класс!' : 'Повтори ещё') + '</div>' +
         '<div class="res-row"><div class="res-st g"><div class="res-n">' + qC + '</div><div class="res-l">Верно</div></div>' +
         '<div class="res-st r"><div class="res-n">' + qW + '</div><div class="res-l">Ошибки</div></div></div>' +
-        '<div class="res-btns"><button class="btn-ghost" onclick="initQuiz()">Снова</button>' +
+        '<div class="res-btns"><button class="btn-ghost" onclick="initQuiz(false,true)">Снова</button>' +
         '<button class="btn-share" onclick="shareResult(' + qC + ',' + (qC+qW) + ')">📤 Поделиться</button></div></div>';
     }
     return;
@@ -998,6 +1080,9 @@ function checkQ(btn, id) {
     haptic('err');
   }
   if (!inDuel) markWord(quizQ.id, ok);
+  quizAnswered++;
+  saveQuizSession();
+  maybeEncourage();
   updQ();
   bumpStreak();
   document.getElementById('q-n').style.display = 'inline-block';
@@ -1027,8 +1112,45 @@ function checkType() {
   if (ok) { fb.textContent = '✓ Верно!'; fb.className = 'q-fb g'; qC++; haptic('ok'); }
   else { fb.innerHTML = '✗ Правильно: <b>' + esc(quizQ.ru) + '</b>'; fb.className = 'q-fb r'; qW++; haptic('err'); el.classList.add('wrong'); }
   if (!inDuel) markWord(quizQ.id, ok);
+  quizAnswered++;
+  saveQuizSession();
+  maybeEncourage();
   updQ(); bumpStreak();
   document.getElementById('q-n').style.display = 'inline-block';
+}
+
+// показывает плашку поддержки на определённых рубежах
+const MILESTONES = {
+  3:  { e:'🌱', t:'Хорошее начало!' },
+  5:  { e:'✨', t:'Ого, целых 5 слов!' },
+  10: { e:'🔥', t:'10 ответов — так держать!' },
+  15: { e:'💪', t:'15 позади, ты в ударе!' },
+  20: { e:'🚀', t:'20 слов! Машина!' },
+  25: { e:'🌟', t:'25 — невероятно!' },
+  30: { e:'🏆', t:'30 ответов! Чемпион!' },
+  40: { e:'👑', t:'40! Это уровень мастера' },
+  50: { e:'🎯', t:'Полсотни! Феноменально!' }
+};
+const CHEERS = ['Так держать!','Отлично идёшь!','Не останавливайся!','Ты молодец!','Огонь!','Супер темп!','Красиво!','Ещё чуть-чуть!'];
+
+function maybeEncourage() {
+  if (inDuel) return;
+  const m = MILESTONES[quizAnswered];
+  if (m) { showCheer(m.e, m.t); return; }
+  // лёгкие перебивки каждые ~7 ответов (не на рубежах)
+  if (quizAnswered > 5 && quizAnswered % 7 === 0) {
+    showCheer('', CHEERS[Math.floor(Math.random() * CHEERS.length)], true);
+  }
+}
+
+let cheerTimer = null;
+function showCheer(emoji, text, mini) {
+  const el = document.getElementById('cheer');
+  el.className = 'cheer' + (mini ? ' mini' : '') + ' show';
+  el.innerHTML = (emoji ? '<span class="cheer-e">' + emoji + '</span>' : '') + '<span>' + text + '</span>';
+  haptic(mini ? 'light' : 'ok');
+  clearTimeout(cheerTimer);
+  cheerTimer = setTimeout(() => el.classList.remove('show'), mini ? 1400 : 1900);
 }
 
 function updQ() {
@@ -1081,6 +1203,23 @@ function renderProfile() {
     '<div class="goal-s">' + todayCount + ' из ' + goalDaily + ' ' + plural(goalDaily,'слово','слова','слов') + (goalPct>=100?' ✓':'') + '</div>' +
     '<div class="goal-set"><button class="gbtn" onclick="setGoal(5)">5</button><button class="gbtn" onclick="setGoal(10)">10</button><button class="gbtn" onclick="setGoal(20)">20</button></div></div></div>';
 
+  // english level badge
+  const myLevel = localStorage.getItem('lx_level');
+  if (myLevel) {
+    const lvlInfo = (typeof LEVEL_INFO !== 'undefined' && LEVEL_INFO[myLevel]) ? LEVEL_INFO[myLevel] : {name: myLevel};
+    h += '<div class="lvl-card" onclick="goLevelTest()">' +
+      '<div class="lvl-badge2">' + myLevel + '</div>' +
+      '<div class="lvl-i"><div class="lvl-t">Твой уровень английского</div>' +
+      '<div class="lvl-n">' + esc(lvlInfo.name) + '</div></div>' +
+      '<div class="lvl-redo">пройти заново →</div></div>';
+  } else {
+    h += '<div class="lvl-card empty" onclick="goLevelTest()">' +
+      '<div class="lvl-badge2 q">?</div>' +
+      '<div class="lvl-i"><div class="lvl-t">Уровень не определён</div>' +
+      '<div class="lvl-n">Пройди тест на уровень английского</div></div>' +
+      '<div class="lvl-redo">пройти →</div></div>';
+  }
+
   // stats grid
   h += '<div class="stat-grid">' +
     statBox(words.length, 'Всего слов', '') +
@@ -1088,15 +1227,17 @@ function renderProfile() {
     statBox(learning, 'Учу', 'gold') +
     statBox(acc + '%', 'Точность', '') + '</div>';
 
-  // activity calendar (last 28 days)
-  h += '<div class="sec" style="margin-top:4px">Активность за месяц</div><div class="cal">';
-  for (let i = 27; i >= 0; i--) {
-    const d = new Date(Date.now() - i * 86400000).toISOString().slice(0,10);
-    const v = dayLog[d] || 0;
-    const lvl = v === 0 ? 0 : v < 3 ? 1 : v < 6 ? 2 : 3;
-    h += '<div class="cal-d l' + lvl + '" title="' + d + ': ' + v + '"></div>';
-  }
-  h += '</div>';
+  // days active this month
+  const now = new Date();
+  const ym = now.toISOString().slice(0,7); // YYYY-MM
+  const daysInMonth = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+  let activeDays = 0;
+  Object.keys(dayLog).forEach(d => { if (d.startsWith(ym) && dayLog[d] > 0) activeDays++; });
+  const monthNames = ['январе','феврале','марте','апреле','мае','июне','июле','августе','сентябре','октябре','ноябре','декабре'];
+  h += '<div class="month-card">' +
+    '<div class="month-big">' + activeDays + '</div>' +
+    '<div class="month-i"><div class="month-t">' + plural(activeDays,'день','дня','дней') + ' в боте</div>' +
+    '<div class="month-s">в ' + monthNames[now.getMonth()] + ' из ' + daysInMonth + ' ' + plural(daysInMonth,'дня','дней','дней') + '</div></div></div>';
 
   // achievements
   h += '<div class="sec" style="margin-top:6px">Достижения</div><div class="ach-grid">';
@@ -1114,12 +1255,171 @@ function statBox(val, lbl, cls) {
   return '<div class="stat-b"><div class="stat-v ' + cls + '">' + val + '</div><div class="stat-l">' + lbl + '</div></div>';
 }
 
+function goLevelTest() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-quiz').classList.add('active');
+  document.querySelectorAll('.nav-btn')[2].classList.add('active');
+  startLevelTest();
+  haptic('light');
+}
+
 function setGoal(n) {
   goalDaily = n;
   localStorage.setItem('lx_goal', String(n));
   if (CS) { try { CS.setItem('lx_goal', String(n)); } catch(e){} }
   renderProfile();
   haptic('light');
+}
+
+// ── LEVEL TEST (определение уровня английского) ──
+// каждый вопрос: слово/фраза + 4 варианта, индекс правильного, уровень CEFR
+const LEVEL_Q = [
+  // A1
+  {q:'"Hello" означает...',o:['Привет','Пока','Спасибо','Извини'],a:0,lvl:'A1'},
+  {q:'Выбери перевод: "water"',o:['огонь','вода','земля','воздух'],a:1,lvl:'A1'},
+  {q:'"I ___ a student." Вставь глагол.',o:['am','is','are','be'],a:0,lvl:'A1'},
+  {q:'Как сказать "красный"?',o:['blue','green','red','black'],a:2,lvl:'A1'},
+  // A2
+  {q:'"She ___ to school every day."',o:['go','goes','going','gone'],a:1,lvl:'A2'},
+  {q:'Перевод: "yesterday"',o:['завтра','сегодня','вчера','сейчас'],a:2,lvl:'A2'},
+  {q:'Прошедшее время "buy":',o:['buyed','buy','bought','buying'],a:2,lvl:'A2'},
+  {q:'"There ___ many people here."',o:['is','are','am','be'],a:1,lvl:'A2'},
+  // B1
+  {q:'"If it rains, we ___ stay home."',o:['will','would','have','are'],a:0,lvl:'B1'},
+  {q:'Перевод: "to achieve"',o:['избегать','достигать','терять','начинать'],a:1,lvl:'B1'},
+  {q:'"I have ___ this film before."',o:['saw','see','seen','seeing'],a:2,lvl:'B1'},
+  {q:'Синоним "important":',o:['tiny','significant','funny','quiet'],a:1,lvl:'B1'},
+  {q:'"used to" значит...',o:['использую сейчас','раньше делал','буду делать','хочу делать'],a:1,lvl:'B1'},
+  // B2
+  {q:'"By next year, I ___ graduated."',o:['will have','will','have','had'],a:0,lvl:'B2'},
+  {q:'Перевод: "nevertheless"',o:['поэтому','тем не менее','например','кстати'],a:1,lvl:'B2'},
+  {q:'"I wish I ___ more time."',o:['have','had','will have','having'],a:1,lvl:'B2'},
+  {q:'Значение "to be aware of":',o:['бояться','быть осведомлённым','избегать','забывать'],a:1,lvl:'B2'},
+  // C1
+  {q:'"Had I known, I ___ have come."',o:['would','will','can','must'],a:0,lvl:'C1'},
+  {q:'Перевод: "to acknowledge"',o:['отрицать','признавать','скрывать','требовать'],a:1,lvl:'C1'},
+  {q:'Значение идиомы "to bite the bullet":',o:['опоздать','стиснув зубы сделать','солгать','сдаться'],a:1,lvl:'C1'},
+];
+
+const LEVEL_INFO = {
+  A1:{name:'A1 — Начальный',desc:'Ты знаешь базовые слова и простые фразы. Отличный старт! Учи по 5-10 слов в день.'},
+  A2:{name:'A2 — Элементарный',desc:'Понимаешь повседневные выражения и простые предложения. Расширяй словарь и грамматику.'},
+  B1:{name:'B1 — Средний',desc:'Справляешься в большинстве ситуаций общения. Уже можно смотреть сериалы с субтитрами!'},
+  B2:{name:'B2 — Выше среднего',desc:'Свободно общаешься, понимаешь сложные тексты. Это уровень для работы и учёбы за рубежом.'},
+  C1:{name:'C1 — Продвинутый',desc:'Владеешь языком почти как носитель. Можешь выражать тонкие оттенки смысла. Впечатляет!'},
+};
+
+let ltState = null;
+
+function startLevelTest() {
+  ltState = { idx: 0, score: 0, byLvl: {A1:0,A2:0,B1:0,B2:0,C1:0}, totalByLvl: {A1:0,A2:0,B1:0,B2:0,C1:0}, done: false };
+  LEVEL_Q.forEach(q => ltState.totalByLvl[q.lvl]++);
+  renderLevelQ();
+}
+
+function renderLevelQ() {
+  const b = document.getElementById('q-body');
+  // hide the launcher bar & duel button during the test
+  document.querySelector('.leveltest-bar').style.display = 'none';
+  if (ltState.idx >= LEVEL_Q.length) { renderLevelResult(); return; }
+  const q = LEVEL_Q[ltState.idx];
+  const prog = Math.round(ltState.idx / LEVEL_Q.length * 100);
+  b.innerHTML =
+    '<div style="display:flex;flex-direction:column;gap:12px">' +
+    '<div class="prog"><div class="prog-t"><div class="prog-f" style="width:' + prog + '%"></div></div>' +
+    '<div class="prog-m"><span>Вопрос ' + (ltState.idx+1) + ' из ' + LEVEL_Q.length + '</span><span>' + prog + '%</span></div></div>' +
+    '<div class="q-card"><div class="q-sub">Тест уровня</div><div class="q-word" style="font-size:clamp(16px,4.6vw,22px);font-family:Inter,sans-serif;font-weight:700">' + esc(q.q) + '</div></div>' +
+    '<div class="q-opts" id="lt-opts">' + q.o.map((opt,i) =>
+      '<button class="q-o" onclick="answerLevel(' + i + ')">' + esc(opt) + '</button>'
+    ).join('') + '</div></div>';
+}
+
+let ltLock = false;
+function answerLevel(i) {
+  if (ltLock) return;
+  ltLock = true;
+  const q = LEVEL_Q[ltState.idx];
+  const opts = document.querySelectorAll('#lt-opts .q-o');
+  opts.forEach(o => o.style.pointerEvents = 'none');
+  if (i === q.a) {
+    opts[i].classList.add('c');
+    ltState.score++; ltState.byLvl[q.lvl]++;
+    haptic('ok');
+  } else {
+    opts[i].classList.add('w');
+    opts[q.a].classList.add('c');
+    haptic('err');
+  }
+  setTimeout(() => {
+    ltLock = false;
+    ltState.idx++;
+    renderLevelQ();
+  }, 750);
+}
+
+function computeLevel() {
+  // уровень = самый высокий, где доля правильных >= 60%, считая снизу вверх
+  const order = ['A1','A2','B1','B2','C1'];
+  let result = 'A1';
+  for (const lvl of order) {
+    const total = ltState.totalByLvl[lvl] || 1;
+    const ratio = ltState.byLvl[lvl] / total;
+    if (ratio >= 0.6) result = lvl;
+    else if (lvl !== 'A1') break; // как только проваливаем уровень — стоп
+  }
+  // если даже A1 < 60% — всё равно A1 (начальный)
+  return result;
+}
+
+function renderLevelResult() {
+  ltState.done = true;
+  const lvl = computeLevel();
+  const info = LEVEL_INFO[lvl];
+  const order = ['A1','A2','B1','B2','C1'];
+  const pos = order.indexOf(lvl);
+  const fillPct = Math.round((pos + 1) / order.length * 100);
+  const b = document.getElementById('q-body');
+  b.innerHTML =
+    '<div class="lt-result">' +
+    '<div class="lt-prog">Твой уровень английского</div>' +
+    '<div class="lt-badge">' + lvl + '</div>' +
+    '<div class="lt-name">' + esc(info.name) + '</div>' +
+    '<div class="lt-bar2"><div class="lt-fill" style="width:' + fillPct + '%"></div></div>' +
+    '<div class="lt-scale"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span></div>' +
+    '<div class="lt-desc">' + esc(info.desc) + '</div>' +
+    '<div class="lt-prog">Правильных ответов: ' + ltState.score + ' из ' + LEVEL_Q.length + '</div>' +
+    '<div class="res-btns"><button class="btn-ghost" onclick="exitLevelTest()">← К тесту слов</button>' +
+    '<button class="btn-share" onclick="shareLevel(\'' + lvl + '\')">📤 Поделиться</button></div>' +
+    '</div>';
+  // save level to localStorage + cloud, show on the bar next time
+  localStorage.setItem('lx_level', lvl);
+  if (CS) { try { CS.setItem('lx_level', lvl); } catch(e){} }
+  updateLevelBar();
+  haptic('ok');
+}
+
+function exitLevelTest() {
+  ltState = null;
+  document.querySelector('.leveltest-bar').style.display = 'flex';
+  initQuiz();
+}
+
+function shareLevel(lvl) {
+  const info = LEVEL_INFO[lvl];
+  const txt = '🎯 Мой уровень английского — ' + info.name + '!\n\nА какой у тебя? Проверь в WordFlip 👇';
+  if (TG && TG.openTelegramLink) {
+    TG.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(APP_LINK) + '&text=' + encodeURIComponent(txt));
+  } else {
+    try { navigator.clipboard.writeText(txt + '\n' + APP_LINK); toast('Скопировано!'); } catch(e) { toast(APP_LINK); }
+  }
+  haptic('light');
+}
+
+function updateLevelBar() {
+  const lvl = localStorage.getItem('lx_level');
+  const sub = document.getElementById('lt-sub');
+  if (sub && lvl) sub.textContent = 'Твой уровень: ' + lvl + ' · пройти заново';
 }
 
 // ── SHARE & DUEL ──
@@ -1230,7 +1530,7 @@ document.addEventListener('keydown', e => {
   }
 });
 loadCloud(() => {
-  renderList(); renderStreak(); renderWotd();
+  renderList(); renderStreak(); renderWotd(); updateLevelBar();
   if (checkDuel()) {
     // switch to quiz tab and run duel
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
