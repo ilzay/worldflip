@@ -8,29 +8,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a1410;
-  --s1:#101d17;
-  --s2:#16261e;
-  --s3:#1d3126;
-  --border:rgba(120,220,180,0.08);
-  --border2:rgba(120,220,180,0.16);
-  --acc:#2de0a5;
-  --acc2:#7df0c8;
-  --acc-dim:rgba(45,224,165,0.14);
-  --gold:#ffd166;
-  --red:#ff7b7b;
-  --text:#e9f5ef;
-  --muted:#7da393;
-  --muted2:#48635a;
+  --bg:#070f0c;
+  --bg2:#0a1712;
+  --s1:#0f1d16;
+  --s2:#14271d;
+  --s3:#1b3326;
+  --border:rgba(120,220,180,0.09);
+  --border2:rgba(120,220,180,0.18);
+  --acc:#34e6ab;
+  --acc2:#86f5d0;
+  --acc3:#c5fce8;
+  --acc-dim:rgba(52,230,171,0.13);
+  --gold:#ffd56b;
+  --gold-dim:rgba(255,213,107,0.14);
+  --red:#ff8189;
+  --blue:#6bb8ff;
+  --text:#eaf6f0;
+  --muted:#84a89a;
+  --muted2:#4d6a5f;
   --r:14px;
   --r2:20px;
-  --nav-h:64px;
+  --r3:26px;
+  --nav-h:66px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',sans-serif;color:var(--text);font-size:clamp(14px,3.8vw,16px)}
 
 /* ── BG ── */
-.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(45,224,165,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(45,224,165,.03) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 50% 0%,black 0%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 50% 0%,black 0%,transparent 75%)}
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background:
+  radial-gradient(ellipse 80% 50% at 50% -10%,rgba(52,230,171,.10),transparent 60%),
+  radial-gradient(ellipse 60% 40% at 100% 100%,rgba(107,184,255,.05),transparent 60%),
+  linear-gradient(180deg,var(--bg2),var(--bg))}
+.bg-grid::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(52,230,171,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(52,230,171,.025) 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(ellipse at 50% 0%,black 0%,transparent 78%);-webkit-mask-image:radial-gradient(ellipse at 50% 0%,black 0%,transparent 78%)}
 
 /* ── SHELL ── */
 .app{display:flex;flex-direction:column;height:100vh;height:100dvh;position:relative;z-index:1}
@@ -38,22 +47,25 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .page{position:absolute;inset:0;overflow-y:auto;padding:clamp(12px,3vw,20px) clamp(10px,3vw,16px) calc(var(--nav-h) + 20px);display:none;flex-direction:column;gap:clamp(10px,2.5vw,16px);scrollbar-width:none}
 .page::-webkit-scrollbar{display:none}
 .page.active{display:flex}
+.page>*{flex-shrink:0}
 
 /* ── NAV ── */
 .nav{display:flex;background:rgba(16,29,23,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--border);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));position:absolute;bottom:0;left:0;right:0;z-index:10;min-height:var(--nav-h)}
 .nav-btn{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 2px;font-size:clamp(8px,2.4vw,10px);font-weight:600;color:var(--muted2);background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:color .2s;min-width:0;overflow:hidden;white-space:nowrap}
 .nav-btn svg{width:clamp(18px,5vw,21px);height:clamp(18px,5vw,21px);stroke-width:2;transition:all .2s}
 .nav-btn.active{color:var(--acc)}
-.nav-btn.active svg{filter:drop-shadow(0 0 8px rgba(45,224,165,.6))}
+.nav-btn.active svg{filter:drop-shadow(0 0 10px rgba(52,230,171,.7))}
+.nav-btn::before{content:'';position:absolute;top:6px;width:34px;height:3px;border-radius:3px;background:var(--acc);opacity:0;transform:scaleX(.4);transition:all .25s}
+.nav-btn.active::before{opacity:1;transform:scaleX(1)}
 
 /* ── HEADER ── */
-.hdr{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}
-.hdr-title{font-family:'Unbounded',sans-serif;font-size:clamp(17px,5vw,22px);font-weight:800;letter-spacing:-.02em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.hdr-title .dot{color:var(--acc)}
-.badge{background:var(--s2);border:1px solid var(--border2);border-radius:30px;padding:4px 12px;font-size:clamp(10px,2.8vw,12px);font-weight:600;color:var(--acc2);white-space:nowrap;flex-shrink:0}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;flex-wrap:nowrap}
+.hdr-title{font-family:'Unbounded',sans-serif;font-size:clamp(18px,5.2vw,23px);font-weight:800;letter-spacing:-.02em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:linear-gradient(120deg,var(--text),var(--acc2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hdr-title .dot{-webkit-text-fill-color:var(--acc);color:var(--acc)}
+.badge{background:var(--s2);border:1px solid var(--border2);border-radius:30px;padding:4px 11px;font-size:clamp(10px,2.8vw,12px);font-weight:600;color:var(--acc2);white-space:nowrap;flex-shrink:0}
 
 /* ── ADD FORM ── */
-.card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:clamp(12px,3.5vw,16px);display:flex;flex-direction:column;gap:10px;min-width:0}
+.card{background:linear-gradient(160deg,rgba(20,39,29,.9),rgba(15,29,22,.9));border:1px solid var(--border2);border-radius:var(--r3);padding:clamp(13px,3.8vw,17px);display:flex;flex-direction:column;gap:10px;min-width:0;box-shadow:0 4px 24px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.03);flex-shrink:0}
 .lbl{font-size:clamp(9px,2.4vw,10px);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding-left:2px}
 .inp{width:100%;background:var(--s3);border:1.5px solid transparent;border-radius:var(--r);padding:clamp(11px,3vw,14px) clamp(12px,3.5vw,16px);color:var(--text);font-size:clamp(15px,4vw,16px);font-family:'Inter',sans-serif;font-weight:600;outline:none;transition:all .2s;min-width:0}
 .inp:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-dim)}
@@ -76,7 +88,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .sel .s-val{font-weight:700;font-size:clamp(13px,3.6vw,15px);color:var(--acc2);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sel .s-x{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:0 2px;flex-shrink:0}
 
-.btn{background:var(--acc);border:none;border-radius:var(--r);color:#06140e;font-size:clamp(13px,3.8vw,15px);font-weight:700;font-family:'Inter',sans-serif;padding:clamp(12px,3.2vw,14px);cursor:pointer;width:100%;transition:all .15s;opacity:.35;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn{background:linear-gradient(135deg,var(--acc),var(--acc2));border:none;border-radius:var(--r);color:#04120c;font-size:clamp(13px,3.8vw,15px);font-weight:800;font-family:'Inter',sans-serif;padding:clamp(12px,3.4vw,15px);cursor:pointer;width:100%;transition:all .15s;opacity:.4;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 16px rgba(52,230,171,.25)}
 .btn.on{opacity:1;pointer-events:all}
 .btn:active{transform:scale(.97)}
 .btn-ghost{background:var(--s2);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-size:clamp(13px,3.6vw,15px);font-weight:700;font-family:'Inter',sans-serif;padding:clamp(11px,3vw,13px) clamp(18px,5vw,28px);cursor:pointer;transition:all .15s;white-space:nowrap}
@@ -87,6 +99,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .witem{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:clamp(10px,2.8vw,13px) clamp(10px,3vw,13px);display:flex;align-items:center;gap:clamp(6px,2vw,10px);animation:up .25s ease;min-width:0}
 @keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .w-n{font-size:clamp(9px,2.4vw,11px);font-weight:700;color:var(--muted2);min-width:16px;text-align:center;flex-shrink:0}
+.w-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;background:var(--muted2)}
+.w-dot.new{background:var(--muted2)}
+.w-dot.mid{background:var(--gold)}
+.w-dot.done{background:var(--acc);box-shadow:0 0 8px rgba(52,230,171,.5)}
 .w-en{font-weight:700;font-size:clamp(13px,3.6vw,15px);flex:1 1 40%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .w-ru{font-size:clamp(11px,3.2vw,13px);color:var(--muted);flex:1 1 40%;text-align:right;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .w-x{background:none;border:none;cursor:pointer;color:var(--muted2);padding:4px;flex-shrink:0;transition:color .15s}
@@ -104,8 +120,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .cin{width:100%;height:100%;position:relative;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1);will-change:transform}
 .cin.fl{transform:rotateY(180deg);-webkit-transform:rotateY(180deg)}
 .cf{position:absolute;inset:0;border-radius:var(--r2);display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:clamp(16px,5vw,28px);gap:8px;overflow:hidden;-webkit-transform:translateZ(0);transform:translateZ(0)}
-.cf.f1{background:#13251c;border:1px solid var(--border2);z-index:2}
-.cf.f2{background:#0e2018;border:1px solid rgba(45,224,165,.25);-webkit-transform:rotateY(180deg) translateZ(0);transform:rotateY(180deg) translateZ(0);z-index:1}
+.cf.f1{background:linear-gradient(155deg,#18301f,#0f2118);border:1px solid var(--border2);z-index:2;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.cf.f2{background:linear-gradient(155deg,#13301f,#0c2418);border:1px solid rgba(52,230,171,.3);-webkit-transform:rotateY(180deg) translateZ(0);transform:rotateY(180deg) translateZ(0);z-index:1;box-shadow:inset 0 1px 0 rgba(52,230,171,.1)}
 .c-chip{font-size:clamp(8px,2.2vw,10px);font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:20px;padding:3px 10px}
 .c-word{font-family:'Unbounded',sans-serif;font-size:clamp(20px,6.5vw,30px);font-weight:600;text-align:center;line-height:1.25;word-break:break-word;max-width:100%}
 .cf.f2 .c-word{color:var(--acc2)}
@@ -119,10 +135,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .act.no:active{background:rgba(255,123,123,.08);transform:scale(.96)}
 
 /* ── QUIZ ── */
-.q-hd{display:flex;gap:6px;flex-shrink:0}
+.q-hd{display:flex;gap:5px;flex-shrink:1;min-width:0;flex-wrap:wrap;justify-content:flex-end}
 .q-s{background:var(--s2);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:clamp(10px,2.8vw,12px);font-weight:700;display:flex;align-items:center;gap:4px;white-space:nowrap}
 .q-s.g{color:var(--acc)}
 .q-s.r{color:var(--red)}
+.q-duel{background:var(--gold-dim);border:1px solid rgba(255,213,107,.3);border-radius:20px;padding:4px 11px;font-size:clamp(10px,2.8vw,12px);font-weight:700;font-family:'Inter',sans-serif;color:var(--gold);cursor:pointer;white-space:nowrap;transition:transform .15s}
+.q-duel:active{transform:scale(.94)}
 .q-card{background:var(--s1);border:1px solid var(--border2);border-radius:var(--r2);padding:clamp(20px,6vw,30px) clamp(14px,4vw,20px);display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
 .q-sub{font-size:clamp(9px,2.4vw,11px);font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
 .q-word{font-family:'Unbounded',sans-serif;font-size:clamp(20px,7vw,32px);font-weight:600;text-align:center;line-height:1.2;word-break:break-word;max-width:100%}
@@ -134,6 +152,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .q-fb{font-size:clamp(12px,3.4vw,14px);font-weight:700;min-height:20px;text-align:center;word-break:break-word}
 .q-fb.g{color:var(--acc)}
 .q-fb.r{color:var(--red)}
+.q-type{text-align:center;font-size:clamp(15px,4.2vw,17px)}
+.q-type.wrong{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(255,129,137,.15)!important}
 
 /* ── RESULT ── */
 .res{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:36px 12px;text-align:center}
@@ -147,12 +167,57 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
 .res-l{font-size:clamp(8px,2.2vw,10px);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
 .res-st.g .res-n{color:var(--acc)}
 .res-st.r .res-n{color:var(--red)}
+.res-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn-share{background:linear-gradient(135deg,var(--blue),#8fc9ff);border:none;border-radius:var(--r);color:#04121e;font-size:clamp(13px,3.6vw,15px);font-weight:800;font-family:'Inter',sans-serif;padding:clamp(11px,3vw,13px) clamp(16px,5vw,24px);cursor:pointer;transition:all .15s;white-space:nowrap;box-shadow:0 4px 16px rgba(107,184,255,.25)}
+.btn-share:active{transform:scale(.96)}
 
 /* ── TOAST ── */
 .toast{position:fixed;bottom:calc(var(--nav-h) + 16px);left:50%;transform:translateX(-50%) translateY(14px);background:rgba(22,38,30,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border2);border-radius:30px;padding:10px 20px;font-size:clamp(11px,3.2vw,13px);font-weight:600;color:var(--text);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.34,1.2,.64,1);z-index:999;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis;box-shadow:0 8px 28px rgba(0,0,0,.5)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 .nocards{text-align:center;color:var(--muted);font-size:clamp(12px,3.4vw,14px);padding:44px 16px;line-height:2}
+.imp-area{min-height:110px;resize:vertical;font-weight:500;line-height:1.6;font-family:'Inter',sans-serif}
+.goal-card{background:linear-gradient(150deg,rgba(52,230,171,.1),rgba(15,29,22,.6));border:1px solid var(--border2);border-radius:var(--r3);padding:clamp(14px,4vw,18px);display:flex;align-items:center;gap:clamp(12px,4vw,18px);box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.goal-ring{width:clamp(72px,20vw,84px);height:clamp(72px,20vw,84px);flex-shrink:0}
+.goal-i{min-width:0;flex:1}
+.goal-t{font-size:clamp(13px,3.6vw,15px);font-weight:700}
+.goal-s{font-size:clamp(11px,3.2vw,13px);color:var(--muted);margin-top:2px}
+.goal-set{display:flex;gap:6px;margin-top:8px}
+.gbtn{background:var(--s3);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:clamp(11px,3vw,13px);font-weight:700;font-family:'Inter',sans-serif;padding:5px 12px;cursor:pointer;transition:all .15s}
+.gbtn:active{background:var(--acc-dim);border-color:var(--acc);color:var(--acc2)}
+.stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.stat-b{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:clamp(12px,3.5vw,16px);text-align:center;min-width:0}
+.stat-v{font-family:'Unbounded',sans-serif;font-size:clamp(20px,6vw,26px);font-weight:800;overflow:hidden;text-overflow:ellipsis}
+.stat-v.g{color:var(--acc)}
+.stat-v.gold{color:var(--gold)}
+.stat-l{font-size:clamp(9px,2.6vw,11px);color:var(--muted);font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+.cal{display:grid;grid-template-columns:repeat(14,1fr);gap:clamp(3px,1.2vw,5px)}
+.cal-d{aspect-ratio:1;border-radius:3px;background:var(--s3)}
+.cal-d.l1{background:rgba(52,230,171,.3)}
+.cal-d.l2{background:rgba(52,230,171,.6)}
+.cal-d.l3{background:var(--acc)}
+.ach-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ach{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:clamp(10px,3vw,13px) 6px;text-align:center;opacity:.4;transition:opacity .2s;min-width:0}
+.ach.got{opacity:1;border-color:var(--border2)}
+.ach.got .ach-i{filter:none}
+.ach-i{font-size:clamp(22px,6vw,28px);filter:grayscale(1)}
+.ach.got .ach-i{filter:grayscale(0)}
+.ach-n{font-size:clamp(10px,2.8vw,12px);font-weight:700;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ach-d{font-size:clamp(8px,2.4vw,10px);color:var(--muted);margin-top:1px;line-height:1.3}
+.wotd{position:relative;background:linear-gradient(150deg,rgba(52,230,171,.13),rgba(107,184,255,.06));border:1px solid rgba(52,230,171,.3);border-radius:var(--r3);padding:clamp(14px,4vw,18px);cursor:pointer;overflow:hidden;transition:transform .15s;box-shadow:0 4px 24px rgba(52,230,171,.1);min-width:0;flex-shrink:0}
+.wotd:active{transform:scale(.985)}
+.wotd-glow{position:absolute;top:-50px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(52,230,171,.35),transparent 70%);pointer-events:none;border-radius:50%;z-index:0}
+.wotd-top{display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative;z-index:1;margin-bottom:8px;min-width:0}
+.wotd-tag{font-size:clamp(9px,2.6vw,11px);font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--acc2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.wotd-spk{background:rgba(255,255,255,.08);border:1px solid var(--border2);border-radius:50%;width:clamp(30px,8vw,36px);height:clamp(30px,8vw,36px);min-width:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--acc2);flex-shrink:0;transition:transform .15s;padding:0}
+.wotd-spk:active{transform:scale(.88)}
+.wotd-spk svg{width:52%;height:52%}
+.wotd-en{font-family:'Unbounded',sans-serif;font-size:clamp(21px,6.2vw,30px);font-weight:700;letter-spacing:-.02em;position:relative;z-index:1;word-break:break-word;line-height:1.15}
+.wotd-ru{font-size:clamp(13px,3.8vw,16px);color:var(--acc2);font-weight:600;margin-top:3px;position:relative;z-index:1;word-break:break-word}
+.wotd-ex{font-size:clamp(11px,3.2vw,13px);color:var(--muted);font-style:italic;margin-top:8px;line-height:1.5;position:relative;z-index:1;word-break:break-word}
+.wotd-add{font-size:clamp(10px,2.9vw,12px);color:var(--acc);font-weight:700;margin-top:11px;position:relative;z-index:1;word-break:break-word}
+.wotd.done{opacity:.62}
+.wotd.done .wotd-add{color:var(--muted)}
 .badge.streak{color:var(--gold);border-color:rgba(255,209,102,.3)}
 .sets-toggle{display:flex;align-items:center;justify-content:space-between;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:clamp(11px,3vw,14px) clamp(12px,3.5vw,16px);color:var(--text);font-size:clamp(12px,3.4vw,14px);font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;width:100%;transition:border-color .15s}
 .sets-toggle:active{border-color:var(--acc)}
@@ -208,6 +273,19 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
           <div class="badge" id="cnt">0 слов</div>
         </div>
       </div>
+      <div class="wotd" id="wotd" onclick="addWotd()">
+        <div class="wotd-glow"></div>
+        <div class="wotd-top">
+          <span class="wotd-tag">✦ Слово дня</span>
+          <button class="wotd-spk" onclick="event.stopPropagation();speak(document.getElementById('wotd-en').textContent)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>
+          </button>
+        </div>
+        <div class="wotd-en" id="wotd-en">—</div>
+        <div class="wotd-ru" id="wotd-ru"></div>
+        <div class="wotd-ex" id="wotd-ex"></div>
+        <div class="wotd-add" id="wotd-add">Нажми, чтобы добавить в свой список →</div>
+      </div>
       <div class="card">
         <div>
           <div class="lbl">Слово</div>
@@ -231,6 +309,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
         <svg id="sets-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div id="sets-box" style="display:none"></div>
+      <button class="sets-toggle" onclick="toggleImport()">
+        <span>📥 Импорт списком</span>
+        <svg id="imp-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div id="imp-box" style="display:none">
+        <div class="card" style="gap:8px">
+          <div class="hint" style="margin:0">Каждое слово с новой строки, формат: <b>cat - кошка</b><br>Разделитель: тире, дефис или двоеточие.</div>
+          <textarea class="inp imp-area" id="imp-text" placeholder="cat - кошка&#10;dog - собака&#10;run - бежать"></textarea>
+          <button class="btn on" onclick="doImport()">Импортировать</button>
+        </div>
+      </div>
       <div class="wlist" id="wlist"></div>
     </div>
 
@@ -248,11 +337,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
       <div class="hdr">
         <div class="hdr-title">Тест</div>
         <div class="q-hd">
+          <button class="q-duel" onclick="startDuel()">⚔️ Дуэль</button>
           <div class="q-s g">✓ <span id="qc">0</span></div>
           <div class="q-s r">✗ <span id="qw">0</span></div>
         </div>
       </div>
       <div id="q-body"></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="page" id="page-prof">
+      <div class="hdr"><div class="hdr-title">Профиль</div></div>
+      <div id="prof-body"></div>
     </div>
 
   </div>
@@ -269,6 +365,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:'Inter',s
     <button class="nav-btn" onclick="nav('quiz',this)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01" stroke-linecap="round"/></svg>
       Тест
+    </button>
+    <button class="nav-btn" onclick="nav('prof',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Профиль
     </button>
   </nav>
 </div>
@@ -322,6 +422,8 @@ let quizQ = null, quizDone = false, qC = 0, qW = 0, quizQueue = [];
 let selRu = '';
 const TG = window.Telegram && window.Telegram.WebApp;
 const CS = TG && TG.CloudStorage && TG.initDataUnsafe && TG.initDataUnsafe.user ? TG.CloudStorage : null;
+// ⚠️ Замени на ссылку своего бота (например https://t.me/wordflip_bot)
+const APP_LINK = "https://t.me/your_bot";
 
 // local fallback load
 try { words = JSON.parse(localStorage.getItem('lx_words') || '[]'); } catch(e) { words = []; }
@@ -335,7 +437,7 @@ function save() {
 function loadCloud(cb) {
   if (!CS) { cb(); return; }
   try {
-    CS.getItems(['lx_words','lx_streak'], (err, vals) => {
+    CS.getItems(['lx_words','lx_streak','lx_daylog','lx_goal'], (err, vals) => {
       if (!err && vals) {
         if (vals.lx_words) {
           try {
@@ -353,6 +455,16 @@ function loadCloud(cb) {
             }
           } catch(e){}
         }
+        if (vals.lx_daylog) {
+          try {
+            const dl = JSON.parse(vals.lx_daylog);
+            if (dl && typeof dl === 'object') {
+              Object.keys(dl).forEach(k => { dayLog[k] = Math.max(dayLog[k]||0, dl[k]); });
+              localStorage.setItem('lx_daylog', JSON.stringify(dayLog));
+            }
+          } catch(e){}
+        }
+        if (vals.lx_goal) { goalDaily = parseInt(vals.lx_goal) || goalDaily; localStorage.setItem('lx_goal', String(goalDaily)); }
       }
       cb();
     });
@@ -398,6 +510,38 @@ const SETS = [
     ["exercise","упражнение"],["training","тренировка"],["coach","тренер"],["competition","соревнование"],["championship","чемпионат"],["victory","победа"],["defeat","поражение"],["score","счёт"],["goal","гол"],["team","команда"],["referee","судья"],["stadium","стадион"],["strength","сила"],["endurance","выносливость"],["flexibility","гибкость"],["muscle","мышца"],["injury","травма"],["recovery","восстановление"],["warm-up","разминка"],["stretching","растяжка"],["swimming","плавание"],["weightlifting","тяжёлая атлетика"],["jogging","бег трусцой"],["healthy","здоровый"],["diet","диета"],["nutrition","питание"],["protein","белок"],["habit","привычка"],["sweat","пот"],["champion","чемпион"]
   ]}
 ];
+
+function toggleImport() {
+  const box = document.getElementById('imp-box');
+  const btn = box.previousElementSibling;
+  const open = box.style.display === 'none';
+  box.style.display = open ? 'block' : 'none';
+  btn.classList.toggle('open', open);
+}
+
+function doImport() {
+  const raw = document.getElementById('imp-text').value;
+  const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
+  let added = 0;
+  lines.forEach(line => {
+    const m = line.split(/\s*[-–—:]\s*/);
+    if (m.length >= 2) {
+      const en = m[0].trim();
+      const ru = m.slice(1).join(' ').trim();
+      if (en && ru && !words.some(w => w.en.toLowerCase() === en.toLowerCase())) {
+        words.push({ id: Date.now() + Math.random(), en: en.charAt(0).toUpperCase() + en.slice(1), ru, lvl: 0, seen: 0, correct: 0 });
+        added++;
+      }
+    }
+  });
+  if (added) {
+    save(); renderList();
+    document.getElementById('imp-text').value = '';
+    document.getElementById('imp-box').style.display = 'none';
+    toast('Импортировано ' + added + ' ' + plural(added,'слово','слова','слов'));
+    haptic('ok'); bumpStreak();
+  } else toast('Не нашёл новых слов — проверь формат');
+}
 
 function toggleSets() {
   const box = document.getElementById('sets-box');
@@ -448,13 +592,99 @@ function addSet(id) {
   let added = 0;
   s.words.forEach(([en, ru]) => {
     if (!words.some(w => w.en.toLowerCase() === en.toLowerCase())) {
-      words.push({ id: Date.now() + Math.random(), en: en.charAt(0).toUpperCase() + en.slice(1), ru });
+      words.push({ id: Date.now() + Math.random(), en: en.charAt(0).toUpperCase() + en.slice(1), ru, lvl: 0, seen: 0, correct: 0 });
       added++;
     }
   });
   if (added) { save(); renderList(); toast('Добавлено ' + added + ' ' + plural(added,'слово','слова','слов')); haptic('ok'); }
   else toast('Все слова уже добавлены');
   renderSets();
+}
+
+// ── SRS (интервальное повторение) ──
+function ensureSrs(w){ if(w.lvl===undefined)w.lvl=0; if(w.seen===undefined)w.seen=0; if(w.correct===undefined)w.correct=0; return w; }
+
+function markWord(id, knew) {
+  const w = words.find(x => x.id === id);
+  if (!w) return;
+  ensureSrs(w);
+  logActivity(1);
+  w.seen++;
+  if (knew) { w.correct++; w.lvl = Math.min(5, w.lvl + 1); }
+  else { w.lvl = Math.max(0, w.lvl - 1); }
+  save();
+}
+
+// weighted order: low level (weak) words come first, with some randomness
+function srsOrder(pool) {
+  return [...pool].map(w => {
+    ensureSrs(w);
+    const weight = (6 - w.lvl) + Math.random() * 2; // weaker = higher
+    return { w, weight };
+  }).sort((a,b) => b.weight - a.weight).map(x => x.w);
+}
+
+function lvlLabel(lvl){ return ['Новое','Учу','Учу','Знаю','Знаю','Выучено'][lvl] || 'Новое'; }
+function lvlClass(lvl){ if(lvl>=5)return 'done'; if(lvl>=3)return 'mid'; return 'new'; }
+
+// ── WORD OF THE DAY ──
+const WOTD_POOL = [
+  ["serendipity","счастливая случайность","A happy serendipity brought them together."],
+  ["resilience","устойчивость, стойкость","Her resilience helped her overcome every obstacle."],
+  ["eloquent","красноречивый","He gave an eloquent speech that moved the crowd."],
+  ["wanderlust","жажда странствий","Her wanderlust took her across five continents."],
+  ["ephemeral","мимолётный","Fame can be surprisingly ephemeral."],
+  ["nostalgia","ностальгия","The old song filled him with nostalgia."],
+  ["ambitious","амбициозный","She has an ambitious plan to start her own company."],
+  ["genuine","искренний, подлинный","His genuine smile made everyone feel welcome."],
+  ["curiosity","любопытство","Curiosity is the engine of achievement."],
+  ["vivid","яркий, живой","She has vivid memories of her childhood."],
+  ["empathy","эмпатия, сопереживание","Empathy is the ability to understand others' feelings."],
+  ["thrive","процветать","Plants thrive in warm, sunny weather."],
+  ["inevitable","неизбежный","Change is inevitable in life."],
+  ["spontaneous","спонтанный","They took a spontaneous trip to the coast."],
+  ["profound","глубокий","The book had a profound effect on me."],
+  ["gratitude","благодарность","She expressed her gratitude with a warm note."],
+  ["luminous","светящийся, сияющий","The luminous moon lit up the night sky."],
+  ["persevere","упорствовать","You must persevere to reach your goals."],
+  ["whimsical","причудливый","The garden had a whimsical, fairy-tale look."],
+  ["authentic","подлинный, настоящий","The restaurant serves authentic Italian food."],
+  ["courageous","отважный","It was a courageous decision to leave everything behind."],
+  ["serene","безмятежный","The lake was perfectly serene at dawn."],
+  ["meticulous","дотошный, скрупулёзный","She is meticulous about every detail."],
+  ["radiant","сияющий, лучезарный","The bride looked radiant on her wedding day."],
+  ["endeavor","начинание, стремление","They supported his every endeavor."],
+  ["tranquil","спокойный","We spent a tranquil evening by the fire."],
+  ["intricate","замысловатый","The watch has an intricate mechanism."],
+  ["benevolent","доброжелательный","A benevolent stranger paid for their meal."],
+  ["captivate","очаровывать","The dancer captivated the entire audience."],
+  ["harmony","гармония","They lived in harmony with nature."]
+];
+
+function wotdToday() {
+  const days = Math.floor(Date.now() / 86400000);
+  return WOTD_POOL[days % WOTD_POOL.length];
+}
+
+function renderWotd() {
+  const [en, ru, ex] = wotdToday();
+  document.getElementById('wotd-en').textContent = en.charAt(0).toUpperCase() + en.slice(1);
+  document.getElementById('wotd-ru').textContent = ru;
+  document.getElementById('wotd-ex').textContent = '\u201c' + ex + '\u201d';
+  const has = words.some(w => w.en.toLowerCase() === en.toLowerCase());
+  const box = document.getElementById('wotd');
+  box.classList.toggle('done', has);
+  document.getElementById('wotd-add').textContent = has ? '✓ Уже в твоём списке' : 'Нажми, чтобы добавить в свой список →';
+}
+
+function addWotd() {
+  const [en, ru] = wotdToday();
+  if (words.some(w => w.en.toLowerCase() === en.toLowerCase())) { toast('Уже добавлено'); return; }
+  words.push({ id: Date.now(), en: en.charAt(0).toUpperCase() + en.slice(1), ru, lvl: 0, seen: 0, correct: 0 });
+  save(); renderList(); renderWotd();
+  toast('Слово дня добавлено!');
+  haptic('ok');
+  bumpStreak();
 }
 
 // ── STREAK ──
@@ -533,6 +763,7 @@ function nav(id, btn) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   btn.classList.add('active');
+  if (id === 'prof') renderProfile();
   if (id === 'flash') initFlash();
   if (id === 'quiz') initQuiz();
   renderList();
@@ -598,7 +829,7 @@ function updBtn() {
 function addWord() {
   const en = document.getElementById('in-en').value.trim();
   if (!en || !selRu) { toast('Выбери перевод'); return; }
-  words.push({ id: Date.now(), en, ru: selRu });
+  words.push({ id: Date.now(), en, ru: selRu, lvl: 0, seen: 0, correct: 0 });
   save();
   document.getElementById('in-en').value = '';
   document.getElementById('sug-box').style.display = 'none';
@@ -621,37 +852,39 @@ function renderList() {
     l.innerHTML = '<div class="empty"><div class="e-ico">📚</div>Пока пусто.<br>Добавь первое слово!</div>';
     return;
   }
-  l.innerHTML = [...words].reverse().map((w, i) =>
-    '<div class="witem">' +
-      '<div class="w-n">' + (words.length - i) + '</div>' +
+  l.innerHTML = [...words].reverse().map((w, i) => {
+    ensureSrs(w);
+    return '<div class="witem">' +
+      '<div class="w-dot ' + lvlClass(w.lvl) + '" title="' + lvlLabel(w.lvl) + '"></div>' +
       '<div class="w-en">' + esc(w.en) + '</div>' +
       '<div class="w-ru">' + esc(w.ru) + '</div>' +
       '<button class="w-x" onclick="delWord(' + w.id + ')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>' +
-    '</div>'
-  ).join('');
+    '</div>';
+  }).join('');
 }
 
 // ── FLASHCARDS ──
 function initFlash() {
-  flashOrder = shuffle([...Array(words.length).keys()]);
+  flashSeq = srsOrder(words);
   flashIdx = 0;
   renderFlash();
 }
+let flashSeq = [];
 
 function renderFlash() {
   const b = document.getElementById('f-body');
   const c = document.getElementById('f-cnt');
   if (!words.length) { c.textContent=''; b.innerHTML = '<div class="nocards">Сначала добавь слова<br>на вкладке «Слова»</div>'; return; }
-  if (flashIdx >= flashOrder.length) {
+  if (flashIdx >= flashSeq.length) {
     c.textContent='';
     b.innerHTML = '<div class="res"><div class="res-e">🌿</div><div class="res-t">Колода пройдена!</div>' +
       '<div class="res-s">Ты повторил все ' + words.length + ' ' + plural(words.length,'слово','слова','слов') + '</div>' +
       '<button class="btn-ghost" onclick="initFlash()">Ещё раз</button></div>';
     return;
   }
-  const w = words[flashOrder[flashIdx]];
-  const p = Math.round((flashIdx / flashOrder.length) * 100);
-  c.textContent = (flashIdx+1) + ' / ' + flashOrder.length;
+  const w = flashSeq[flashIdx];
+  const p = Math.round((flashIdx / flashSeq.length) * 100);
+  c.textContent = (flashIdx+1) + ' / ' + flashSeq.length;
   b.innerHTML =
     '<div style="display:flex;flex-direction:column;gap:12px">' +
     '<div class="prog"><div class="prog-t"><div class="prog-f" style="width:' + p + '%"></div></div>' +
@@ -674,36 +907,73 @@ function flip() {
   const c = document.getElementById('cin');
   if (c) { c.classList.toggle('fl'); haptic('sel'); }
 }
-function fnext(ok) { if (ok) toast('Отлично!'); flashIdx++; bumpStreak(); renderFlash(); }
+function fnext(ok) {
+  const cur = flashSeq[flashIdx];
+  if (cur) markWord(cur.id, ok);
+  if (ok) toast('Отлично!');
+  flashIdx++; bumpStreak(); renderFlash();
+}
 
 // ── QUIZ ──
-function initQuiz() {
+let inDuel = false;
+function initQuiz(duel) {
   qC = 0; qW = 0;
-  quizQueue = shuffle([...words]);
+  inDuel = !!duel;
+  const pool = (duel && duelWords) ? duelWords : words;
+  quizQueue = duel ? shuffle([...pool]) : srsOrder(pool);
+  quizPool = pool;
   updQ(); nextQ();
 }
+let quizPool = [];
 
 function nextQ() {
   const b = document.getElementById('q-body');
-  if (!words.length) { b.innerHTML = '<div class="nocards">Сначала добавь слова</div>'; return; }
-  if (words.length < 2) { b.innerHTML = '<div class="nocards">Нужно хотя бы 2 слова</div>'; return; }
+  const activePool = (quizPool && quizPool.length ? quizPool : words);
+  if (!activePool.length) { b.innerHTML = '<div class="nocards">Сначала добавь слова</div>'; return; }
+  if (activePool.length < 2) { b.innerHTML = '<div class="nocards">Нужно хотя бы 2 слова</div>'; return; }
   if (!quizQueue.length) {
-    b.innerHTML = '<div class="res"><div class="res-e">' + (qC >= qW ? '🏆' : '📖') + '</div>' +
-      '<div class="res-t">' + (qC >= qW ? 'Класс!' : 'Повтори ещё') + '</div>' +
-      '<div class="res-row"><div class="res-st g"><div class="res-n">' + qC + '</div><div class="res-l">Верно</div></div>' +
-      '<div class="res-st r"><div class="res-n">' + qW + '</div><div class="res-l">Ошибки</div></div></div>' +
-      '<button class="btn-ghost" onclick="initQuiz()">Снова</button></div>';
+    const total = qC + qW;
+    const pct = total ? Math.round(qC/total*100) : 0;
+    if (inDuel) {
+      b.innerHTML = '<div class="res"><div class="res-e">' + (pct>=70?'🏆':'⚔️') + '</div>' +
+        '<div class="res-t">Дуэль завершена!</div>' +
+        '<div class="res-s">Твой результат: <b style="color:var(--acc)">' + qC + '/' + total + '</b> (' + pct + '%)</div>' +
+        '<div class="res-row"><div class="res-st g"><div class="res-n">' + qC + '</div><div class="res-l">Верно</div></div>' +
+        '<div class="res-st r"><div class="res-n">' + qW + '</div><div class="res-l">Ошибки</div></div></div>' +
+        '<div class="res-btns"><button class="btn-ghost" onclick="addDuelWords()">+ Добавить слова</button>' +
+        '<button class="btn-share" onclick="shareDuelResult(' + qC + ',' + total + ')">📤 Ответить вызовом</button></div></div>';
+    } else {
+      b.innerHTML = '<div class="res"><div class="res-e">' + (qC >= qW ? '🏆' : '📖') + '</div>' +
+        '<div class="res-t">' + (qC >= qW ? 'Класс!' : 'Повтори ещё') + '</div>' +
+        '<div class="res-row"><div class="res-st g"><div class="res-n">' + qC + '</div><div class="res-l">Верно</div></div>' +
+        '<div class="res-st r"><div class="res-n">' + qW + '</div><div class="res-l">Ошибки</div></div></div>' +
+        '<div class="res-btns"><button class="btn-ghost" onclick="initQuiz()">Снова</button>' +
+        '<button class="btn-share" onclick="shareResult(' + qC + ',' + (qC+qW) + ')">📤 Поделиться</button></div></div>';
+    }
     return;
   }
   quizDone = false;
   quizQ = quizQueue.pop();
-  const others = words.filter(w => w.id !== quizQ.id);
+  const others = (quizPool && quizPool.length ? quizPool : words).filter(w => w.id !== quizQ.id);
+  ensureSrs(quizQ);
+  // typing mode for words the user already knows a bit (lvl>=2), else multiple choice; ~35% typing
+  const canType = !inDuel && quizQ.lvl >= 2 && Math.random() < 0.5;
+  const spk = '<button class="spk" onclick="speak(\'' + esc(quizQ.en) + '\', event)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg></button>';
+  const head = '<div class="q-card"><div class="q-sub">' + (canType ? 'Впиши перевод' : 'Переведи') + '</div>' +
+    '<div style="display:flex;align-items:center;gap:10px;max-width:100%"><div class="q-word">' + esc(quizQ.en) + '</div>' + spk + '</div></div>';
+  if (canType) {
+    b.innerHTML =
+      '<div style="display:flex;flex-direction:column;gap:12px">' + head +
+      '<input class="inp q-type" id="q-type" placeholder="Напиши перевод..." autocomplete="off" oninput="onTypeInput()">' +
+      '<div class="q-fb" id="q-fb"></div>' +
+      '<div class="center"><button class="btn" id="q-check" onclick="checkType()">Проверить</button>' +
+      '<button class="btn-ghost" id="q-n" style="display:none" onclick="nextQ()">Дальше →</button></div></div>';
+    setTimeout(() => { const el = document.getElementById('q-type'); if (el) el.focus(); }, 50);
+    return;
+  }
   const opts = shuffle([quizQ, ...shuffle(others).slice(0, Math.min(3, others.length))]);
   b.innerHTML =
-    '<div style="display:flex;flex-direction:column;gap:12px">' +
-    '<div class="q-card"><div class="q-sub">Переведи</div>' +
-    '<div style="display:flex;align-items:center;gap:10px;max-width:100%"><div class="q-word">' + esc(quizQ.en) + '</div>' +
-    '<button class="spk" onclick="speak(\'' + esc(quizQ.en) + '\', event)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg></button></div></div>' +
+    '<div style="display:flex;flex-direction:column;gap:12px">' + head +
     '<div class="q-opts">' + opts.map(o =>
       '<button class="q-o" onclick="checkQ(this,' + o.id + ')">' + esc(o.ru) + '</button>'
     ).join('') + '</div>' +
@@ -727,8 +997,37 @@ function checkQ(btn, id) {
     });
     haptic('err');
   }
+  if (!inDuel) markWord(quizQ.id, ok);
   updQ();
   bumpStreak();
+  document.getElementById('q-n').style.display = 'inline-block';
+}
+
+function onTypeInput() {
+  const el = document.getElementById('q-type');
+  const btn = document.getElementById('q-check');
+  if (btn) btn.classList.toggle('on', !!el.value.trim());
+}
+
+function normRu(s){ return s.toLowerCase().replace(/ё/g,'е').replace(/[^а-я ]/g,'').trim(); }
+
+function checkType() {
+  if (quizDone) return;
+  const el = document.getElementById('q-type');
+  const val = (el.value || '').trim();
+  if (!val) return;
+  quizDone = true;
+  el.disabled = true;
+  document.getElementById('q-check').style.display = 'none';
+  // accept if matches any of the dictionary translations OR the saved ru (split by comma)
+  const accepted = [quizQ.ru, ...(DICT[quizQ.en.toLowerCase()] || [])]
+    .join(',').split(/[,;/]/).map(normRu).filter(Boolean);
+  const ok = accepted.includes(normRu(val));
+  const fb = document.getElementById('q-fb');
+  if (ok) { fb.textContent = '✓ Верно!'; fb.className = 'q-fb g'; qC++; haptic('ok'); }
+  else { fb.innerHTML = '✗ Правильно: <b>' + esc(quizQ.ru) + '</b>'; fb.className = 'q-fb r'; qW++; haptic('err'); el.classList.add('wrong'); }
+  if (!inDuel) markWord(quizQ.id, ok);
+  updQ(); bumpStreak();
   document.getElementById('q-n').style.display = 'inline-block';
 }
 
@@ -736,6 +1035,167 @@ function updQ() {
   document.getElementById('qc').textContent = qC;
   document.getElementById('qw').textContent = qW;
 }
+
+// ── PROFILE / STATS / GOAL / ACHIEVEMENTS ──
+let goalDaily = parseInt(localStorage.getItem('lx_goal') || '5');
+let dayLog = {};
+try { dayLog = JSON.parse(localStorage.getItem('lx_daylog') || '{}'); } catch(e){ dayLog = {}; }
+
+function logActivity(n) {
+  const t = todayStr();
+  dayLog[t] = (dayLog[t] || 0) + (n || 1);
+  localStorage.setItem('lx_daylog', JSON.stringify(dayLog));
+  if (CS) { try { CS.setItem('lx_daylog', JSON.stringify(dayLog)); } catch(e){} }
+}
+
+const ACHIEVEMENTS = [
+  { id:'first', icon:'🌱', name:'Первое слово', desc:'Добавь первое слово', check:()=>words.length>=1 },
+  { id:'ten', icon:'📗', name:'Десятка', desc:'10 слов в коллекции', check:()=>words.length>=10 },
+  { id:'fifty', icon:'📚', name:'Полста', desc:'50 слов в коллекции', check:()=>words.length>=50 },
+  { id:'hundred', icon:'🎓', name:'Сотня', desc:'100 слов в коллекции', check:()=>words.length>=100 },
+  { id:'streak3', icon:'🔥', name:'В ударе', desc:'Серия 3 дня', check:()=>streak.count>=3 },
+  { id:'streak7', icon:'⚡', name:'Неделя силы', desc:'Серия 7 дней', check:()=>streak.count>=7 },
+  { id:'streak30', icon:'👑', name:'Месяц подряд', desc:'Серия 30 дней', check:()=>streak.count>=30 },
+  { id:'master10', icon:'✨', name:'Знаток', desc:'10 выученных слов', check:()=>words.filter(w=>(w.lvl||0)>=5).length>=10 },
+  { id:'master50', icon:'🏆', name:'Мастер', desc:'50 выученных слов', check:()=>words.filter(w=>(w.lvl||0)>=5).length>=50 },
+];
+
+function renderProfile() {
+  const b = document.getElementById('prof-body');
+  const learned = words.filter(w => (w.lvl||0) >= 5).length;
+  const learning = words.filter(w => (w.lvl||0) >= 1 && (w.lvl||0) < 5).length;
+  const fresh = words.filter(w => (w.lvl||0) === 0).length;
+  const todayCount = dayLog[todayStr()] || 0;
+  const goalPct = Math.min(100, Math.round(todayCount / goalDaily * 100));
+  const totalSeen = words.reduce((s,w) => s + (w.seen||0), 0);
+  const totalCorrect = words.reduce((s,w) => s + (w.correct||0), 0);
+  const acc = totalSeen ? Math.round(totalCorrect / totalSeen * 100) : 0;
+
+  // daily goal ring
+  const R = 34, C = 2 * Math.PI * R, off = C * (1 - goalPct/100);
+  let h = '<div class="goal-card">' +
+    '<svg class="goal-ring" viewBox="0 0 80 80"><circle cx="40" cy="40" r="' + R + '" fill="none" stroke="var(--s3)" stroke-width="7"/>' +
+    '<circle cx="40" cy="40" r="' + R + '" fill="none" stroke="var(--acc)" stroke-width="7" stroke-linecap="round" stroke-dasharray="' + C + '" stroke-dashoffset="' + off + '" transform="rotate(-90 40 40)"/>' +
+    '<text x="40" y="46" text-anchor="middle" font-size="20" font-weight="800" fill="var(--text)" font-family="Unbounded">' + todayCount + '</text></svg>' +
+    '<div class="goal-i"><div class="goal-t">Цель на сегодня</div>' +
+    '<div class="goal-s">' + todayCount + ' из ' + goalDaily + ' ' + plural(goalDaily,'слово','слова','слов') + (goalPct>=100?' ✓':'') + '</div>' +
+    '<div class="goal-set"><button class="gbtn" onclick="setGoal(5)">5</button><button class="gbtn" onclick="setGoal(10)">10</button><button class="gbtn" onclick="setGoal(20)">20</button></div></div></div>';
+
+  // stats grid
+  h += '<div class="stat-grid">' +
+    statBox(words.length, 'Всего слов', '') +
+    statBox(learned, 'Выучено', 'g') +
+    statBox(learning, 'Учу', 'gold') +
+    statBox(acc + '%', 'Точность', '') + '</div>';
+
+  // activity calendar (last 28 days)
+  h += '<div class="sec" style="margin-top:4px">Активность за месяц</div><div class="cal">';
+  for (let i = 27; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 86400000).toISOString().slice(0,10);
+    const v = dayLog[d] || 0;
+    const lvl = v === 0 ? 0 : v < 3 ? 1 : v < 6 ? 2 : 3;
+    h += '<div class="cal-d l' + lvl + '" title="' + d + ': ' + v + '"></div>';
+  }
+  h += '</div>';
+
+  // achievements
+  h += '<div class="sec" style="margin-top:6px">Достижения</div><div class="ach-grid">';
+  ACHIEVEMENTS.forEach(a => {
+    const got = a.check();
+    h += '<div class="ach' + (got?' got':'') + '"><div class="ach-i">' + a.icon + '</div>' +
+      '<div class="ach-n">' + a.name + '</div><div class="ach-d">' + a.desc + '</div></div>';
+  });
+  h += '</div>';
+
+  b.innerHTML = h;
+}
+
+function statBox(val, lbl, cls) {
+  return '<div class="stat-b"><div class="stat-v ' + cls + '">' + val + '</div><div class="stat-l">' + lbl + '</div></div>';
+}
+
+function setGoal(n) {
+  goalDaily = n;
+  localStorage.setItem('lx_goal', String(n));
+  if (CS) { try { CS.setItem('lx_goal', String(n)); } catch(e){} }
+  renderProfile();
+  haptic('light');
+}
+
+// ── SHARE & DUEL ──
+function shareResult(correct, total) {
+  const pct = total ? Math.round(correct / total * 100) : 0;
+  let emoji = pct >= 90 ? '🏆' : pct >= 70 ? '🔥' : pct >= 50 ? '💪' : '📚';
+  const txt = emoji + ' Я прошёл тест в WordFlip!\n\n' +
+    '✅ ' + correct + ' из ' + total + ' (' + pct + '%)\n' +
+    (streak.count > 1 ? '🔥 Серия: ' + streak.count + ' ' + plural(streak.count,'день','дня','дней') + '\n' : '') +
+    '\nУчи английские слова вместе со мной 👇';
+  const botLink = APP_LINK;
+  if (TG && TG.openTelegramLink) {
+    const url = 'https://t.me/share/url?url=' + encodeURIComponent(botLink) + '&text=' + encodeURIComponent(txt);
+    TG.openTelegramLink(url);
+  } else {
+    // fallback: copy to clipboard
+    try {
+      navigator.clipboard.writeText(txt + '\n' + botLink);
+      toast('Скопировано — отправь друзьям!');
+    } catch(e) { toast('Поделись ссылкой: ' + botLink); }
+  }
+  haptic('light');
+}
+
+function addDuelWords() {
+  if (!duelWords) return;
+  let added = 0;
+  duelWords.forEach(d => {
+    if (!words.some(w => w.en.toLowerCase() === d.en.toLowerCase())) {
+      words.push({ id: Date.now() + Math.random(), en: d.en, ru: d.ru, lvl: 0, seen: 0, correct: 0 }); added++;
+    }
+  });
+  if (added) { save(); renderList(); toast('Добавлено ' + added + ' ' + plural(added,'слово','слова','слов')); haptic('ok'); }
+  else toast('Все слова уже есть');
+}
+
+function shareDuelResult(correct, total) {
+  // respond with own duel from own words
+  startDuel();
+}
+
+function startDuel() {
+  if (words.length < 4) { toast('Нужно минимум 4 слова для дуэли'); return; }
+  // pick 5 random words, encode into a share link
+  const pool = shuffle([...words]).slice(0, 5).map(w => w.en + '|' + w.ru);
+  const payload = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(pool)))));
+  const link = APP_LINK + '?duel=' + payload;
+  const txt = '⚔️ Вызываю тебя на дуэль в WordFlip!\n\nПройди тест из моих слов и узнай, кто переведёт точнее 👇';
+  if (TG && TG.openTelegramLink) {
+    TG.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(txt));
+  } else {
+    try { navigator.clipboard.writeText(txt + '\n' + link); toast('Ссылка на дуэль скопирована!'); }
+    catch(e) { toast('Поделись ссылкой на дуэль'); }
+  }
+  haptic('mid');
+}
+
+// detect incoming duel from start param
+function checkDuel() {
+  let payload = null;
+  // from Telegram start_param
+  if (TG && TG.initDataUnsafe && TG.initDataUnsafe.start_param && TG.initDataUnsafe.start_param.startsWith('duel')) {
+    payload = TG.initDataUnsafe.start_param.replace('duel','');
+  }
+  // from URL ?duel=
+  const m = location.search.match(/[?&]duel=([^&]+)/);
+  if (m) payload = m[1];
+  if (!payload) return false;
+  try {
+    const arr = JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(payload)))));
+    duelWords = arr.map(s => { const [en, ru] = s.split('|'); return { id: Math.random(), en, ru }; });
+    return duelWords.length >= 2;
+  } catch(e) { return false; }
+}
+
+let duelWords = null;
 
 // ── UTILS ──
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
@@ -757,13 +1217,30 @@ function toast(m){const t=document.getElementById('toast');t.textContent=m;t.cla
 // ── INIT ──
 if (TG) { try { TG.ready(); TG.expand(); } catch(e){} }
 document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('page-quiz').classList.contains('active')) {
+    const t = document.getElementById('q-type');
+    const n = document.getElementById('q-n');
+    if (t && !quizDone) { checkType(); return; }
+    if (n && n.style.display !== 'none') { nextQ(); return; }
+  }
   if (e.key === 'Enter' && document.getElementById('page-add').classList.contains('active')) addWord();
   if (e.key === 'Tab' && document.getElementById('page-add').classList.contains('active')) {
     const t9 = document.querySelector('.t9');
     if (t9) { e.preventDefault(); t9.click(); }
   }
 });
-loadCloud(() => { renderList(); renderStreak(); });
+loadCloud(() => {
+  renderList(); renderStreak(); renderWotd();
+  if (checkDuel()) {
+    // switch to quiz tab and run duel
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-quiz').classList.add('active');
+    document.querySelectorAll('.nav-btn')[2].classList.add('active');
+    initQuiz(true);
+    toast('⚔️ Дуэль принята! Удачи!');
+  }
+});
 </script>
 </body>
 </html>
