@@ -1274,46 +1274,110 @@ function setGoal(n) {
 
 // ── LEVEL TEST (определение уровня английского) ──
 // каждый вопрос: слово/фраза + 4 варианта, индекс правильного, уровень CEFR
-const LEVEL_Q = [
-  // A1
+const LEVEL_POOL = [
+  // ───────── A1 ─────────
   {q:'"Hello" означает...',o:['Привет','Пока','Спасибо','Извини'],a:0,lvl:'A1'},
   {q:'Выбери перевод: "water"',o:['огонь','вода','земля','воздух'],a:1,lvl:'A1'},
-  {q:'"I ___ a student." Вставь глагол.',o:['am','is','are','be'],a:0,lvl:'A1'},
+  {q:'"I ___ a student."',o:['am','is','are','be'],a:0,lvl:'A1'},
   {q:'Как сказать "красный"?',o:['blue','green','red','black'],a:2,lvl:'A1'},
-  // A2
+  {q:'Перевод: "cat"',o:['собака','кошка','птица','рыба'],a:1,lvl:'A1'},
+  {q:'"This is my ___." (друг)',o:['friend','book','house','car'],a:0,lvl:'A1'},
+  {q:'Сколько будет "two + three"?',o:['four','five','six','seven'],a:1,lvl:'A1'},
+  {q:'"Good ___!" (утром)',o:['night','morning','bye','day'],a:1,lvl:'A1'},
+  {q:'Перевод: "big"',o:['маленький','большой','быстрый','новый'],a:1,lvl:'A1'},
+  {q:'"___ name is Anna."',o:['My','I','Me','Mine'],a:0,lvl:'A1'},
+  // ───────── A2 ─────────
   {q:'"She ___ to school every day."',o:['go','goes','going','gone'],a:1,lvl:'A2'},
   {q:'Перевод: "yesterday"',o:['завтра','сегодня','вчера','сейчас'],a:2,lvl:'A2'},
   {q:'Прошедшее время "buy":',o:['buyed','buy','bought','buying'],a:2,lvl:'A2'},
   {q:'"There ___ many people here."',o:['is','are','am','be'],a:1,lvl:'A2'},
-  // B1
+  {q:'"I am ___ than my brother."',o:['tall','taller','tallest','more tall'],a:1,lvl:'A2'},
+  {q:'Перевод: "to remember"',o:['забывать','помнить','терять','искать'],a:1,lvl:'A2'},
+  {q:'"We ___ TV last night."',o:['watch','watched','watching','watches'],a:1,lvl:'A2'},
+  {q:'Противоположность "expensive":',o:['cheap','big','fast','new'],a:0,lvl:'A2'},
+  {q:'"___ you like coffee?"',o:['Do','Does','Are','Is'],a:0,lvl:'A2'},
+  {q:'Перевод: "weather"',o:['время','погода','неделя','вода'],a:1,lvl:'A2'},
+  // ───────── B1 ─────────
   {q:'"If it rains, we ___ stay home."',o:['will','would','have','are'],a:0,lvl:'B1'},
   {q:'Перевод: "to achieve"',o:['избегать','достигать','терять','начинать'],a:1,lvl:'B1'},
   {q:'"I have ___ this film before."',o:['saw','see','seen','seeing'],a:2,lvl:'B1'},
   {q:'Синоним "important":',o:['tiny','significant','funny','quiet'],a:1,lvl:'B1'},
   {q:'"used to" значит...',o:['использую сейчас','раньше делал','буду делать','хочу делать'],a:1,lvl:'B1'},
-  // B2
+  {q:'"The car ___ by my father."',o:['repaired','was repaired','repairs','repairing'],a:1,lvl:'B1'},
+  {q:'Перевод: "although"',o:['потому что','хотя','поэтому','если'],a:1,lvl:'B1'},
+  {q:'"She said she ___ tired."',o:['is','was','are','be'],a:1,lvl:'B1'},
+  {q:'Фразовый глагол "give up" означает:',o:['начинать','сдаваться','встречать','искать'],a:1,lvl:'B1'},
+  {q:'"I look forward ___ you."',o:['to see','to seeing','seeing','see'],a:1,lvl:'B1'},
+  // ───────── B2 ─────────
   {q:'"By next year, I ___ graduated."',o:['will have','will','have','had'],a:0,lvl:'B2'},
   {q:'Перевод: "nevertheless"',o:['поэтому','тем не менее','например','кстати'],a:1,lvl:'B2'},
   {q:'"I wish I ___ more time."',o:['have','had','will have','having'],a:1,lvl:'B2'},
   {q:'Значение "to be aware of":',o:['бояться','быть осведомлённым','избегать','забывать'],a:1,lvl:'B2'},
-  // C1
+  {q:'"He ___ have told me earlier!"',o:['should','must','can','will'],a:0,lvl:'B2'},
+  {q:'Синоним "to obtain":',o:['to lose','to acquire','to break','to hide'],a:1,lvl:'B2'},
+  {q:'"No sooner ___ I arrived than it rained."',o:['have','had','did','was'],a:1,lvl:'B2'},
+  {q:'Перевод: "reluctant"',o:['охотный','неохотный','усталый','злой'],a:1,lvl:'B2'},
+  {q:'"It is high time we ___."',o:['leave','left','will leave','leaving'],a:1,lvl:'B2'},
+  {q:'Значение "to cope with":',o:['избегать','справляться с','создавать','требовать'],a:1,lvl:'B2'},
+  // ───────── C1 ─────────
   {q:'"Had I known, I ___ have come."',o:['would','will','can','must'],a:0,lvl:'C1'},
   {q:'Перевод: "to acknowledge"',o:['отрицать','признавать','скрывать','требовать'],a:1,lvl:'C1'},
-  {q:'Значение идиомы "to bite the bullet":',o:['опоздать','стиснув зубы сделать','солгать','сдаться'],a:1,lvl:'C1'},
+  {q:'Идиома "to bite the bullet":',o:['опоздать','стиснув зубы сделать','солгать','сдаться'],a:1,lvl:'C1'},
+  {q:'Значение "meticulous":',o:['небрежный','дотошный','ленивый','щедрый'],a:1,lvl:'C1'},
+  {q:'"Scarcely ___ he spoken when..."',o:['has','had','did','was'],a:1,lvl:'C1'},
+  {q:'Синоним "ubiquitous":',o:['редкий','вездесущий','дорогой','тихий'],a:1,lvl:'C1'},
+  {q:'"to jump on the bandwagon" значит:',o:['проиграть','примкнуть к популярному','уехать','спорить'],a:1,lvl:'C1'},
+  {q:'Перевод: "inevitable"',o:['случайный','неизбежный','редкий','лёгкий'],a:1,lvl:'C1'},
+  {q:'"Were it not for you, I ___ failed."',o:['will have','would have','had','have'],a:1,lvl:'C1'},
+  {q:'Значение "to discern":',o:['игнорировать','различать','прятать','ломать'],a:1,lvl:'C1'},
+  // ───────── C2 (очень сложные) ─────────
+  {q:'Значение "perfunctory":',o:['тщательный','небрежно-формальный','страстный','опасный'],a:1,lvl:'C2'},
+  {q:'Идиома "to throw in the towel":',o:['убраться','сдаться','помыться','победить'],a:1,lvl:'C2'},
+  {q:'Синоним "sycophant":',o:['лидер','подхалим','учёный','бунтарь'],a:1,lvl:'C2'},
+  {q:'"to be hoist with one\u2019s own petard" значит:',o:['разбогатеть','попасть в свою же ловушку','уплыть','прославиться'],a:1,lvl:'C2'},
+  {q:'Значение "obfuscate":',o:['прояснять','запутывать','ускорять','украшать'],a:1,lvl:'C2'},
+  {q:'Слово "perspicacious" описывает человека:',o:['потливого','проницательного','упрямого','забывчивого'],a:1,lvl:'C2'},
+  {q:'"a pyrrhic victory" — это:',o:['лёгкая победа','победа ценой огромных потерь','ничья','поражение'],a:1,lvl:'C2'},
+  {q:'Значение "ineffable":',o:['неэффективный','невыразимый словами','неизбежный','бесполезный'],a:1,lvl:'C2'},
+  {q:'Синоним "to vacillate":',o:['решать твёрдо','колебаться','исчезать','ускоряться'],a:1,lvl:'C2'},
+  {q:'"to gild the lily" означает:',o:['разрушить красоту','излишне украшать совершенное','лгать','экономить'],a:1,lvl:'C2'},
+  {q:'Значение "recalcitrant":',o:['послушный','упрямо непокорный','весёлый','медленный'],a:1,lvl:'C2'},
+  {q:'Слово "sesquipedalian" относится к:',o:['коротким словам','длинным мудрёным словам','числам','цветам'],a:1,lvl:'C2'},
 ];
+
+// случайная выборка вопросов на каждый запуск: по N с каждого уровня
+let LEVEL_Q = [];
+function buildLevelTest() {
+  const order = ['A1','A2','B1','B2','C1','C2'];
+  const perLevel = 3; // 3 вопроса с каждого уровня = 18 вопросов
+  LEVEL_Q = [];
+  order.forEach(lvl => {
+    const pool = LEVEL_POOL.filter(q => q.lvl === lvl);
+    shuffle(pool);
+    pool.slice(0, perLevel).forEach(q => {
+      // перемешиваем варианты внутри вопроса, чтобы ответ был не всегда на том же месте
+      const correctText = q.o[q.a];
+      const opts = [...q.o];
+      shuffle(opts);
+      LEVEL_Q.push({ q: q.q, o: opts, a: opts.indexOf(correctText), lvl: q.lvl });
+    });
+  });
+}
 
 const LEVEL_INFO = {
   A1:{name:'A1 — Начальный',desc:'Ты знаешь базовые слова и простые фразы. Отличный старт! Учи по 5-10 слов в день.'},
   A2:{name:'A2 — Элементарный',desc:'Понимаешь повседневные выражения и простые предложения. Расширяй словарь и грамматику.'},
   B1:{name:'B1 — Средний',desc:'Справляешься в большинстве ситуаций общения. Уже можно смотреть сериалы с субтитрами!'},
   B2:{name:'B2 — Выше среднего',desc:'Свободно общаешься, понимаешь сложные тексты. Это уровень для работы и учёбы за рубежом.'},
-  C1:{name:'C1 — Продвинутый',desc:'Владеешь языком почти как носитель. Можешь выражать тонкие оттенки смысла. Впечатляет!'},
+  C1:{name:'C1 — Продвинутый',desc:'Владеешь языком почти как носитель. Понимаешь сложные идиомы и оттенки смысла. Впечатляет!'},
+  C2:{name:'C2 — В совершенстве',desc:'Высший уровень! Ты владеешь английским как образованный носитель — редкие слова, идиомы, тонкая стилистика. Браво!'},
 };
 
 let ltState = null;
 
 function startLevelTest() {
-  ltState = { idx: 0, score: 0, byLvl: {A1:0,A2:0,B1:0,B2:0,C1:0}, totalByLvl: {A1:0,A2:0,B1:0,B2:0,C1:0}, done: false };
+  buildLevelTest();
+  ltState = { idx: 0, score: 0, byLvl: {A1:0,A2:0,B1:0,B2:0,C1:0,C2:0}, totalByLvl: {A1:0,A2:0,B1:0,B2:0,C1:0,C2:0}, done: false };
   LEVEL_Q.forEach(q => ltState.totalByLvl[q.lvl]++);
   renderLevelQ();
 }
@@ -1360,15 +1424,14 @@ function answerLevel(i) {
 
 function computeLevel() {
   // уровень = самый высокий, где доля правильных >= 60%, считая снизу вверх
-  const order = ['A1','A2','B1','B2','C1'];
+  const order = ['A1','A2','B1','B2','C1','C2'];
   let result = 'A1';
   for (const lvl of order) {
     const total = ltState.totalByLvl[lvl] || 1;
     const ratio = ltState.byLvl[lvl] / total;
     if (ratio >= 0.6) result = lvl;
-    else if (lvl !== 'A1') break; // как только проваливаем уровень — стоп
+    else if (lvl !== 'A1') break;
   }
-  // если даже A1 < 60% — всё равно A1 (начальный)
   return result;
 }
 
@@ -1376,7 +1439,7 @@ function renderLevelResult() {
   ltState.done = true;
   const lvl = computeLevel();
   const info = LEVEL_INFO[lvl];
-  const order = ['A1','A2','B1','B2','C1'];
+  const order = ['A1','A2','B1','B2','C1','C2'];
   const pos = order.indexOf(lvl);
   const fillPct = Math.round((pos + 1) / order.length * 100);
   const b = document.getElementById('q-body');
@@ -1386,7 +1449,7 @@ function renderLevelResult() {
     '<div class="lt-badge">' + lvl + '</div>' +
     '<div class="lt-name">' + esc(info.name) + '</div>' +
     '<div class="lt-bar2"><div class="lt-fill" style="width:' + fillPct + '%"></div></div>' +
-    '<div class="lt-scale"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span></div>' +
+    '<div class="lt-scale"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>' +
     '<div class="lt-desc">' + esc(info.desc) + '</div>' +
     '<div class="lt-prog">Правильных ответов: ' + ltState.score + ' из ' + LEVEL_Q.length + '</div>' +
     '<div class="res-btns"><button class="btn-ghost" onclick="exitLevelTest()">← К тесту слов</button>' +
