@@ -1343,19 +1343,69 @@ const LEVEL_POOL = [
   {q:'"to gild the lily" означает:',o:['разрушить красоту','излишне украшать совершенное','лгать','экономить'],a:1,lvl:'C2'},
   {q:'Значение "recalcitrant":',o:['послушный','упрямо непокорный','весёлый','медленный'],a:1,lvl:'C2'},
   {q:'Слово "sesquipedalian" относится к:',o:['коротким словам','длинным мудрёным словам','числам','цветам'],a:1,lvl:'C2'},
+
+  // ───── A1 (доп.) ─────
+  {q:'"How ___ are you?" (возраст)',o:['old','many','much','long'],a:0,lvl:'A1'},
+  {q:'Перевод: "book"',o:['ручка','книга','стол','окно'],a:1,lvl:'A1'},
+  {q:'"They ___ my friends."',o:['is','am','are','be'],a:2,lvl:'A1'},
+  {q:'Множественное число "child":',o:['childs','children','childes','child'],a:1,lvl:'A1'},
+  {q:'"I have ___ apple."',o:['a','an','the','-'],a:1,lvl:'A1'},
+  // ───── A2 (доп.) ─────
+  {q:'"She is ___ doctor."',o:['a','an','the','-'],a:0,lvl:'A2'},
+  {q:'"___ you ever been to London?"',o:['Did','Have','Are','Do'],a:1,lvl:'A2'},
+  {q:'"I am good ___ cooking."',o:['at','in','on','to'],a:0,lvl:'A2'},
+  {q:'"There isn\u2019t ___ milk left."',o:['many','much','few','some'],a:1,lvl:'A2'},
+  {q:'"He is taller ___ me."',o:['then','than','that','as'],a:1,lvl:'A2'},
+  {q:'"We have lived here ___ 2010."',o:['for','since','from','at'],a:1,lvl:'A2'},
+  // ───── B1 грамматика (доп.) ─────
+  {q:'"If I ___ you, I would apologise."',o:['was','were','am','be'],a:1,lvl:'B1'},
+  {q:'"The house ___ in 1990."',o:['built','was built','is build','has built'],a:1,lvl:'B1'},
+  {q:'"She asked me where I ___."',o:['live','lived','am living','will live'],a:1,lvl:'B1'},
+  {q:'"I look forward to ___ from you."',o:['hear','hearing','heard','be heard'],a:1,lvl:'B1'},
+  {q:'"It\u2019s the best film I\u2019ve ___ seen."',o:['never','ever','already','yet'],a:1,lvl:'B1'},
+  {q:'"You ___ smoke here. It\u2019s forbidden."',o:['mustn\u2019t','don\u2019t have to','needn\u2019t','wouldn\u2019t'],a:0,lvl:'B1'},
+  {q:'"He made me ___ for hours."',o:['to wait','wait','waiting','waited'],a:1,lvl:'B1'},
+  // ───── B2 грамматика (доп., 4 близких варианта) ─────
+  {q:'"I\u2019d rather you ___ that again."',o:['don\u2019t do','didn\u2019t do','won\u2019t do','not do'],a:1,lvl:'B2'},
+  {q:'"Hardly ___ the door when the phone rang."',o:['I had closed','had I closed','I closed','did I close'],a:1,lvl:'B2'},
+  {q:'"It\u2019s essential that he ___ present."',o:['is','be','was','will be'],a:1,lvl:'B2'},
+  {q:'"She objects to ___ like a child."',o:['treat','be treated','being treated','treated'],a:2,lvl:'B2'},
+  {q:'"___ harder, he would have passed."',o:['If he studied','Had he studied','Has he studied','Would he study'],a:1,lvl:'B2'},
+  {q:'"The proposal is worth ___."',o:['to consider','considering','consider','considered'],a:1,lvl:'B2'},
+  {q:'"Not until later ___ the truth."',o:['I learned','did I learn','I had learned','learned I'],a:1,lvl:'B2'},
+  {q:'"You\u2019d better not ___ late again."',o:['being','to be','be','been'],a:2,lvl:'B2'},
+  // ───── C1 грамматика (доп., тонкие различия) ─────
+  {q:'"Only after the meeting ___ the real issue."',o:['we discussed','did we discuss','we did discuss','discussed we'],a:1,lvl:'C1'},
+  {q:'"Were it not for his help, we ___ failed."',o:['would have','will have','had','would'],a:0,lvl:'C1'},
+  {q:'"So intense ___ that everyone left."',o:['the heat was','was the heat','the heat had been','had the heat'],a:1,lvl:'C1'},
+  {q:'"He spoke as though he ___ everything."',o:['knows','knew','has known','had known'],a:3,lvl:'C1'},
+  {q:'"Little ___ that he was being watched."',o:['he knew','did he know','he did know','knew he'],a:1,lvl:'C1'},
+  {q:'"I\u2019d sooner you ___ nothing about it."',o:['say','said','had said','would say'],a:1,lvl:'C1'},
+  {q:'"Such ___ his fury that he slammed the door."',o:['was','it was','had','that was'],a:0,lvl:'C1'},
+  {q:'"No sooner had she left ___ it started to rain."',o:['when','than','then','that'],a:1,lvl:'C1'},
+  // ───── C2 грамматика и стилистика (доп., только носитель уровня) ─────
+  {q:'"___ been for the storm, we would have arrived."',o:['If it had not','Had it not','Were it not','Should it not'],a:1,lvl:'C2'},
+  {q:'"Far be it ___ me to criticise, but..."',o:['for','from','to','of'],a:1,lvl:'C2'},
+  {q:'"Suffice it ___ that the plan failed."',o:['to say','saying','said','say'],a:0,lvl:'C2'},
+  {q:'"He would have us believe that he, ___, is innocent."',o:['of all people','for all people','in all people','by all people'],a:0,lvl:'C2'},
+  {q:'"Be that ___ may, we must proceed."',o:['it','as it','that it','so it'],a:1,lvl:'C2'},
+  {q:'"Never ___ such audacity in my life."',o:['I have seen','have I seen','I had seen','did I saw'],a:1,lvl:'C2'},
+  {q:'"It is high time the matter ___ resolved."',o:['is','was','were','be'],a:2,lvl:'C2'},
+  {q:'"Would that I ___ heeded your warning."',o:['have','had','would','will'],a:1,lvl:'C2'},
+  {q:'Значение "to inure (to)":',o:['ранить','приучить/закалить','удивить','прославить'],a:1,lvl:'C2'},
+  {q:'"perspicuous" описывает текст, который:',o:['запутанный','предельно ясный','длинный','скучный'],a:1,lvl:'C2'},
 ];
 
 // случайная выборка вопросов на каждый запуск: по N с каждого уровня
 let LEVEL_Q = [];
 function buildLevelTest() {
-  const order = ['A1','A2','B1','B2','C1','C2'];
-  const perLevel = 3; // 3 вопроса с каждого уровня = 18 вопросов
+  // больше вопросов на верхних уровнях, чтобы тест был объективнее и его нельзя было угадать
+  const plan = { A1:2, A2:3, B1:4, B2:5, C1:5, C2:5 }; // = 24 вопроса
   LEVEL_Q = [];
-  order.forEach(lvl => {
+  Object.keys(plan).forEach(lvl => {
     const pool = LEVEL_POOL.filter(q => q.lvl === lvl);
     shuffle(pool);
-    pool.slice(0, perLevel).forEach(q => {
-      // перемешиваем варианты внутри вопроса, чтобы ответ был не всегда на том же месте
+    pool.slice(0, plan[lvl]).forEach(q => {
       const correctText = q.o[q.a];
       const opts = [...q.o];
       shuffle(opts);
@@ -1423,14 +1473,26 @@ function answerLevel(i) {
 }
 
 function computeLevel() {
-  // уровень = самый высокий, где доля правильных >= 60%, считая снизу вверх
+  // Поднимаемся снизу вверх. Уровень считается "пройденным", если на нём
+  // правильных >= 60% (но не меньше: при 2 вопросах нужно 2/2, при 3+ — round(60%)).
   const order = ['A1','A2','B1','B2','C1','C2'];
   let result = 'A1';
+  let failedOnce = false;
   for (const lvl of order) {
-    const total = ltState.totalByLvl[lvl] || 1;
-    const ratio = ltState.byLvl[lvl] / total;
-    if (ratio >= 0.6) result = lvl;
-    else if (lvl !== 'A1') break;
+    const total = ltState.totalByLvl[lvl] || 0;
+    if (total === 0) continue;
+    const got = ltState.byLvl[lvl] || 0;
+    const thresh = (lvl === 'C1' || lvl === 'C2') ? 0.7 : 0.6; // верхние уровни — строже
+    const need = total <= 2 ? total : Math.ceil(total * thresh);
+    const passed = got >= need;
+    if (passed) {
+      result = lvl;
+      failedOnce = false;
+    } else {
+      // допускаем один "промах" на уровень выше уже достигнутого, но не два подряд
+      if (failedOnce) break;
+      failedOnce = true;
+    }
   }
   return result;
 }
